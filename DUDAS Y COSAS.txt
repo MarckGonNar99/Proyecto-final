@@ -1,0 +1,20 @@
+***************************************TAREAS******************************************
+-Buscar un logo
+-NOMBRE PARA EL SEO SEM
+-Colores del sitio (COLORES PRIMARIOS)
+-Todas las tareas de filtrado de platos en etiquetas u orden JS
+
+-REGISTRO,LOGIN,CERRAR				 HECHO!!!!!
+
+-SQL SOLO SE INCLUYE COMIDA
+-Modificar base de datos
+	_Crear tabla de reporte
+	_Modificar tabla de recetas
+	_Crear la talba de los pasos (PASO)
+-Tabla de recetas
+	_Cantidad de personas que comen
+	_Tiempo de duración de la receta
+	_foto de la receta
+
+
+*************************DUDAS*************************************
