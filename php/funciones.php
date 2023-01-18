@@ -85,6 +85,7 @@
     }
 
     /* Pie de página Invariable */
+    //<a href="'.$e2.'/editar_datos_user.php" class="btn btn-warning" role="button">Editar Datos</a>
     function insert_footer(){
         $foot='
         <footer>
@@ -171,17 +172,13 @@
 
 
     /* FUNCION FORMULARIO MODIFICAR USUARIO */
-    function comprobar_m_datos_user($nombre,$contraseña){
+    function comprobar_nombre_user($nombre){
         $error=0;
         if(strlen($nombre)==0){
-            $error=1;
-            return $error;
-        }elseif(trim(strlen($contraseña))==0){
-            $error=1;
-            return $error;
-        }else{
-            return $error;
+            $error=1;    
         }
+        return $error;
+        
     }
 
         

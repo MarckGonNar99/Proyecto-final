@@ -16,6 +16,8 @@
 <body>
     <?php
         require('funciones.php');
+        $conexion=conexion();
+
         if(isset($_COOKIE['mantener'])){
             session_decode($_COOKIE['mantener']);
         }
@@ -23,7 +25,6 @@
         if(isset($_SESSION["id"])){
             if($_SESSION['id']!='01'){
                 //DATOS DE CABECERA Y CONEXION
-                $conexion=conexion();
                 $r1=".";
                 $e1="..";
                 $e2=".";
@@ -40,7 +41,8 @@
 
                 echo'
                     <main class="formulario" id="sesion_inicio">
-                        <form method="POST" action="#" enctype="multipart/form-data>
+                        <form method="POST" action="#" enctype="multipart/form-data">
+                        <input type="hidden" value='.$fila["AUTO_INCREMENT"].' name="id" class="form-control" id="id" readonly>
                             <div class="mb-3">
                                 <label for="nombre_receta" class="form-label">Nombre de la receta</label>
                                 <input type="text" name="nombre_receta" class="form-control" id="nombre_receta" required>
@@ -89,9 +91,8 @@
 
                             <div class="mb-3">
                                 <label  for="imagen" class="form-label">Imagen (.jpg o .png)</label>
-                                <input type="file" name="imagen" id="imagen"><br>
+                                <input type="file" name="imagen" id="imagen" required><br>
                             </div>
-                            <input type="hidden" value='.$fila["AUTO_INCREMENT"].' name="id" class="form-control" id="id" readonly>
                             <button type="submit" name="crear" class="btn btn-primary">Crear</button>
                         </form>
                 </main>
@@ -106,7 +107,7 @@
                     $tipo=$_POST['tipo'];
                     $ingredientes=$_POST['ingredientes'];
                     $pasos=$_POST['pasos'];
-                    $fecha="fecha de hoy";
+                    $fecha=date("Y-m-d");
                     $puntuacion=0;
                     if(isset($_POST['alergeno'])){
                         $alergeno=$_POST['alergeno'];
@@ -121,38 +122,43 @@
                     $tipo_foto=$_FILES['imagen']['type'];
                     $temp=$_FILES['imagen']['tmp_name'];
                     $ruta="../imagenes/recetas";
+                    $existe =$_FILES['imagen']['error'];
+
 
                     if(!file_exists($ruta)){
                         mkdir($ruta);
                     }
 
                     $var=$ruta;
-                    if(strrpos($tipo_foto, "jepg")!==false || strrpos($tipo_foto, "jpg")!==false
-                       || strrpos($tipo_foto, "png")!==false){
+                    if(!($existe>0)){
+                        if(strrpos($tipo_foto, "jpeg")!==false || strrpos($tipo_foto, "png")!==false
+                        || strrpos($tipo_foto, "jpg")!==false){
 
-                            //FORMATO JPG
-                        if(strrpos($tipo_foto, "jepg")!==false || strrpos($tipo_foto, "jpg")!==false){
+                                //FORMATO JPG
+                            if(strrpos($tipo_foto, "jepg")!==false || strrpos($tipo_foto, "jpg")!==false){
 
-                            $extension="jepg";
-                            $var=$var."/".$nombre."_".$id.".jpg";
+                                $extension="jepg";
+                                $var=$var."/".$nombre."_".$id.".jpg";
 
+                            }else{
+
+                                //FORMATO PNG
+                                $extension="png";
+                                $var=$var."/".$nombre."_".$id.".png";
+                            }
+
+                            move_uploaded_file($_FILES['imagen']['tmp_name'],$var);
+                            $imagen=1;
                         }else{
-
-                            //FORMATO PNG
-                            $extension="png";
-                            $var=$var."/".$nombre."_".$id.".png";
+                            $imagen=0;      
                         }
-
-                        move_uploaded_file($_FILES['imagen']['tmp_name'],$var);
-                        $imagen=1;
-                        }else{
-                            $imagen=0;       
-                        }
+                    }
+                    echo $imagen;
 
                             //INSERTAR DATOS EN SQL
-
                     if($imagen==1){
-                        $insertar_receta="inser into receta values(?,?,?,?,?,?,?,?,?,?,?,?)";
+                        echo"HOLA";
+                        $insertar_receta="insert into receta values(?,?,?,?,?,?,?,?,?,?,?,?)";
                         $consulta=$conexion->prepare($insertar_receta);
                         $consulta->bind_param("iissiisssssi",
                         $id,$user,$nombre,$var,$tiempo,$n_personas,$tipo,$ingredientes, $alergeno

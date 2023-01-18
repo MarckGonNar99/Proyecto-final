@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <title>Mi perfil</title>
-    <link  rel="stylesheet" type="text/css" href="../estilos/estilos.css"/>
+    <link  rel="stylesheet" type="text/css" href="../estilos/estilos.css?1.2"/>
     <script src="../app/app.js" defer></script>
 </head>
 <body>
@@ -37,32 +37,59 @@
             if($imagen==null){
                 $imagen="../imagenes/usuarios/defecto.jpg";
             }
-
             /* DATOS DE USUARIO &&& MODIFICACION DE DATOS */
             //IMAGEN
             echo
                 '
                     <header id="datos_user">
-                        <img src="'.$imagen.'">
-                        <h2>'.$nombre.'</h2>
+                        <img src="'.$imagen.'">     
                         <div>
-                        <a href="'.$e2.'/editar_datos_user.php" class="btn btn-warning" role="button">Editar Datos</a>
+                        <h2>'.$nombre.'</h2>
                         </div>
                     </header>
                 ';
 
             /* MIS RECETAS */
-            echo '<main>';
+            echo '<main><div class="contenedor">';
                 /* BOTON PARA CREAR RECETA NUEVA */
-            echo'<a href="'.$r1.'/crear_receta.php" class="btn btn-success" role="button">Crear Receta</a>';
+            echo' 
+                <a href="'.$r1.'/crear_receta.php">
+                    <div class="boton_crear_receta">
+                        <p>+</p><p>Crear Receta</p>
+                    </div>
+                </a>';
                 
-                /* RECETAS PROPIAS DEL USUARIO 
-                    BOTON PARA ELIMINAR O EDITAR*/
-            
-            
-            echo'</main>';
+                /* RECETAS PROPIAS DEL USUARIO */
+                $sentencia="select id_receta, nombre, imagen, num_personas, categoria,
+                    fecha, puntuacion from receta where id_user=?";
+                $consulta=$conexion->prepare($sentencia);
+                $consulta->bind_param("i",$id);
+                $consulta->bind_result($id_receta ,$nombre_receta, $imagen, $n_personas, $categoria,
+                                    $fecha, $puntuacion);
+                $consulta->execute();
+                $consulta->store_result();
+
+                while($consulta->fetch()){
+                    echo'
+                    
+                        <div class="tarjeta_receta">
+                            <h6>'.$categoria.'</h6>
+                            <img src="'.$imagen.'" class="card-img-top" alt="...">
+                            <div class="cuerpo_t">
+                                <h5>'.$nombre_receta.'</h5>
+                                <h6>'.$n_personas.' personas</h6>
+                            </div>
+                            <div class="data_t">
+                                    <p>'.$fecha.'</p>
+                                    <small>'.$puntuacion.' ptos</small></p>
+                            </div>
+                            <a href='.$e2.'/ver_receta.php?id_receta='.$id_receta.'>Ver más</a>
+                        </div>
+                    ';
+                   }
+            echo'</div></main>';
         }else{
-            /* ADMIN NO TIENE PERFIL */
+            /* ADMIN NO TIENE PERFIL PARA SUBIR RECETAS*/
         }
     }else{
         /* NO PUEDES ENTRAR SI NO TIENES SESION */
@@ -70,3 +97,5 @@
 ?>
 </body>
 </html>
+
+

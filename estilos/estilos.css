@@ -1,5 +1,12 @@
+*{
+    margin:0%;
+    padding:0%;
+}
+
 body{
     background-image: url("../imagenes/fondos/fondo1.webp");
+    width: 100%;
+    height: 100%;
 }
 /* NAVEGADOR */
 .nav{
@@ -50,4 +57,59 @@ body{
 
 }
 
+/* MI PERFIL */
+#datos_user{
+    background-color: #f8dfdf;
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-around;
+}
+#datos_user img{
+    width:5%;
+}
 
+.contenedor{
+    margin-top: 5%;
+    display: flex;
+    justify-content:center;
+    flex-wrap: wrap;
+}
+
+.boton_crear_receta{
+    background-color: green;
+    width: 250px;
+    height: 200px;
+    margin: 20px 15px;
+}
+
+.tarjeta_receta{
+    background-color: antiquewhite;
+    width: 400px;
+    height: 350px;
+    margin: 20px 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.tarjeta_receta img{
+    height: 170px;
+    width:370px;
+}
+.tarjeta_receta a{
+    background-color: rgb(118, 111, 102);
+    font-size: medium;
+    padding: 10px 15px;
+    display: block;
+    text-align: center;
+}
+
+.cuerpo_t{
+    display: contents;
+}
+
+.data_t{
+    width: 400px;
+    display: flex;
+    justify-content: space-around;
+}
