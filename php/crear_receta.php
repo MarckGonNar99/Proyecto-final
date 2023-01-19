@@ -82,9 +82,9 @@
 
                             <div class="mb-3">
                                 <label for="alergeno" class="form-label">Contiene algún alergeno</label>
-                                <input type="radio" id="si" name="fav_language" value="Si" checked>
+                                <input type="radio" id="si" name="hay_alergeno" value="Si" checked>
                                 <label for="si">Si</label>
-                                <input type="radio" id="no" name="fav_language" value="No">
+                                <input type="radio" id="no" name="hay_alergeno" value="No">
                                 <label for="no">No</label><br>
                                 <input type="text" name="alergeno" class="form-control" id="alergeno" aria-describedby="emailHelp">
                             </div>
@@ -131,6 +131,9 @@
 
                     $var=$ruta;
                     if(!($existe>0)){
+                        /* CREAR NOMBRE DE LA IMAGEN SIN ESPACIOS */
+                        $nombre_imagen=str_replace(' ','', $nombre);
+
                         if(strrpos($tipo_foto, "jpeg")!==false || strrpos($tipo_foto, "png")!==false
                         || strrpos($tipo_foto, "jpg")!==false){
 
@@ -138,13 +141,13 @@
                             if(strrpos($tipo_foto, "jepg")!==false || strrpos($tipo_foto, "jpg")!==false){
 
                                 $extension="jepg";
-                                $var=$var."/".$nombre."_".$id.".jpg";
+                                $var=$var."/".$nombre_imagen."_".$id.".jpg";
 
                             }else{
 
                                 //FORMATO PNG
                                 $extension="png";
-                                $var=$var."/".$nombre."_".$id.".png";
+                                $var=$var."/".$nombre_imagen."_".$id.".png";
                             }
 
                             move_uploaded_file($_FILES['imagen']['tmp_name'],$var);

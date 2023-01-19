@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-    <title>Mi perfil</title>
+    <title>Recetas</title>
     <link  rel="stylesheet" type="text/css" href="../estilos/estilos.css"/>
     <script src="../app/app.js" defer></script>
 </head>
@@ -35,15 +35,57 @@
                 '
                 <section class="buscar">
                     <form method="post" action="#" class="d-flex">
-                    <input type="text" name="dato" class="form-control me-2"  placeholder="Buscar por nombre" aria-label="Search" required>
-                    <input type="submit" class="btn btn-dark" name="buscar" value="Buscar" >
+                        <div>
+                            <div>
+                                <input type="radio" id="nombre" name="que_busca" value="nombre" checked>
+                                <label for="nombre">Nombre</label>
+                            </div>
+                            <div>
+                                <input type="radio" id="categoria" name="que_busca" value="categoria">
+                                <label for="categoria">Categoria</label>
+                            </div>
+                        </div>
+                        <div>
+                            <input type="text" name="dato" class="form-control me-2"  placeholder="Buscar" aria-label="Search" required>
+                            <input type="submit" class="btn btn-dark" name="buscar" value="Buscar">
+                            <a href="'.$e2.'/recetas.php?" class="btn btn-warning" role="button">Resetear</a>
+                        </div>
                     </form>
                 </section>
                 ';
             /* MOSTRAR LAS RECETAS BUSCADAS-GENERAL */
+            if(isset($_POST["buscar"])){
+                $que_buscar=$_POST["que_busca"];
+                $busqueda=$_POST["dato"];
+                $busqueda='%'.$busqueda.'%';
 
+                if($que_buscar=="nombre"){
+                    $sentencia="select id_receta, nombre, imagen, num_personas, categoria,
+                    fecha, puntuacion from receta where nombre like ?";
+                    $consulta=$conexion->prepare($sentencia);
+                    $consulta->bind_param("s",$busqueda);
+                    $consulta->bind_result($id_receta ,$nombre_receta, $imagen, $n_personas, $categoria,
+                    $fecha, $puntuacion);
+                    $consulta->execute();
+                    $consulta->store_result();
+                }elseif($que_buscar=="categoria"){
+                    $sentencia="select id_receta, nombre, imagen, num_personas, categoria,
+                    fecha, puntuacion from receta where categoria like ?";
+                    $consulta=$conexion->prepare($sentencia);
+                    $consulta->bind_param("s",$busqueda);
+                    $consulta->bind_result($id_receta ,$nombre_receta, $imagen, $n_personas, $categoria,
+                    $fecha, $puntuacion);
+                    $consulta->execute();
+                    $consulta->store_result();
+                }else{
+                    /* ERROR AL BUSCAR */
+                }
 
-            /* CREANDO PAGINACIÓN DE TODOS LOS DATOS */
+                while($consulta->fetch()){
+                    echo $nombre_receta;
+                }
+            }else{
+                /* CREANDO PAGINACIÓN DE TODOS LOS DATOS */
             $result = $conexion->query('SELECT COUNT(*) as total_products FROM receta');
             $row = $result->fetch_assoc();
             $num_total_rows = $row['total_products'];
@@ -106,6 +148,10 @@
                 echo '</ul>';
                 echo '</nav>';
             }
+
+            }
+
+            
 
 ?>
 </body>

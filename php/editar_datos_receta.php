@@ -92,9 +92,9 @@
 
                     <div class="mb-3">
                         <label for="alergeno" class="form-label">Contiene algún alergeno</label>
-                        <input type="radio" id="si" name="fav_language" value="Si" checked>
+                        <input type="radio" id="si" name="hay_alergeno" value="Si" checked>
                         <label for="si">Si</label>
-                        <input type="radio" id="no" name="fav_language" value="No">
+                        <input type="radio" id="no" name="hay_alergeno" value="No">
                         <label for="no">No</label><br>
                         <input type="text" name="alergeno" value="'.$alergenos.'" class="form-control" id="alergeno" aria-describedby="emailHelp">
                     </div>
@@ -128,7 +128,7 @@
                 $n=$_FILES['imagen']['name'];
                 $tipo_foto=$_FILES['imagen']['type'];
                 $temp=$_FILES['imagen']['tmp_name'];
-                $ruta="../imagenes/usuarios";
+                $ruta="../imagenes/recetas";
                 $existe =$_FILES['imagen']['error'];
 
 
@@ -149,15 +149,21 @@
                     if(file_exists($ruta_foto_db)){
                         unlink($ruta_foto_db);
                     }
+
+                     /* CREAR NOMBRE DE LA IMAGEN SIN ESPACIOS */
+                     $nombre_imagen=str_replace(' ','', $n_nombre);
+
+
                     if(strrpos($tipo_foto, "jpeg")!==false || strrpos($tipo_foto, "png")!==false
                     || strrpos($tipo_foto, "jpg")!==false){
                         
+                        
                         if(strrpos($tipo_foto, "jpeg")!==false || strrpos($tipo_foto, "jpg")!==false){
                             $extension="jpeg";
-                            $var=$var."/".$nombre."_".$id_user.".jpg";
+                            $var=$var."/".$nombre_imagen."_".$id_user.".jpg";
                         }else{
                             $extension="png";
-                            $var=$var."/".$nombre."_".$id_user.".png";
+                            $var=$var."/".$nombre_imagen."_".$id_user.".png";
                         }
                         move_uploaded_file($_FILES['imagen']['tmp_name'],$var);
                         $imagen=1;

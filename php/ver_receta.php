@@ -76,6 +76,8 @@
                 }
             }
 
+            /* SI LA RECETA NO ES DEL USUARIO-ADMIN SE PUEDE VOTAR Y REPORTAR*/
+
         }
     }
     ?>
