@@ -60,11 +60,11 @@
                 </a>';
                 
                 /* RECETAS PROPIAS DEL USUARIO */
-                $sentencia="select id_receta, nombre, imagen, num_personas, categoria,
+                $sentencia="select id_receta, nombre, imagen, categoria,
                     fecha, puntuacion from receta where id_user=?";
                 $consulta=$conexion->prepare($sentencia);
                 $consulta->bind_param("i",$id);
-                $consulta->bind_result($id_receta ,$nombre_receta, $imagen, $n_personas, $categoria,
+                $consulta->bind_result($id_receta ,$nombre_receta, $imagen, $categoria,
                                     $fecha, $puntuacion);
                 $consulta->execute();
                 $consulta->store_result();
@@ -77,7 +77,6 @@
                             <img src="'.$imagen.'" class="card-img-top" alt="...">
                             <div class="cuerpo_t">
                                 <h5>'.$nombre_receta.'</h5>
-                                <h6>'.$n_personas.' personas</h6>
                             </div>
                             <div class="data_t">
                                     <p>'.$fecha.'</p>

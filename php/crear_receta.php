@@ -54,10 +54,6 @@
                                 <div id="emailHelp" class="form-text">En minutos</div>
                             </div>
                             <div class="mb-3">
-                                <label for="n_personas" class="form-label">Número de personas</label>
-                                <input type="number" name="n_personas" class="form-control" id="n_personas" aria-describedby="emailHelp" required>
-                            </div>
-                            <div class="mb-3">
                                 <label for="ingredientes" class="form-label">Ingredientes</label>
                                 <textarea id="ingredientes" name="ingredientes" class="form-control" placeholder="Ejemplo: 12g de sal, 5 g de harina..." required></textarea>
                                 <div id="emailHelp" class="form-text">Separar los ingredientes por coma</div>
@@ -103,7 +99,6 @@
                     $user=$_SESSION["id"];
                     $nombre=$_POST['nombre_receta'];
                     $tiempo=$_POST['tiempo'];
-                    $n_personas=$_POST['n_personas'];
                     $tipo=$_POST['tipo'];
                     $ingredientes=$_POST['ingredientes'];
                     $pasos=$_POST['pasos'];
@@ -161,10 +156,10 @@
                             //INSERTAR DATOS EN SQL
                     if($imagen==1){
                         echo"HOLA";
-                        $insertar_receta="insert into receta values(?,?,?,?,?,?,?,?,?,?,?,?)";
+                        $insertar_receta="insert into receta values(?,?,?,?,?,?,?,?,?,?,?)";
                         $consulta=$conexion->prepare($insertar_receta);
-                        $consulta->bind_param("iissiisssssi",
-                        $id,$user,$nombre,$var,$tiempo,$n_personas,$tipo,$ingredientes, $alergeno
+                        $consulta->bind_param("iississsssi",
+                        $id,$user,$nombre,$var,$tiempo,$tipo,$ingredientes, $alergeno
                         , $pasos,$fecha, $puntuacion);
                         $consulta->execute();
                         $consulta->fetch();

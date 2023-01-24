@@ -41,11 +41,11 @@
 
             /* SACAR LOS DATOS DE LA RECETA */
             
-            $sentencia="select id_user, nombre, imagen, tiempo, num_personas,
+            $sentencia="select id_user, nombre, imagen, tiempo,
                 categoria, ingredientes, alergenos, pasos, fecha from receta where id_receta=?";
             $consulta=$conexion->prepare($sentencia);
             $consulta->bind_param("i",$id_receta);
-            $consulta->bind_result($id_user, $nombre, $imagen, $tiempo, $n_personas, 
+            $consulta->bind_result($id_user, $nombre, $imagen, $tiempo, 
                 $categoria, $ingredientes, $alergenos, $pasos, $fecha);
             $consulta->execute();
             $consulta->store_result();

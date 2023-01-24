@@ -39,11 +39,11 @@
             echo insert_nav($e1,$e2);
 
 
-            $sentencia="select nombre, tiempo, num_personas,
+            $sentencia="select nombre, tiempo,
                 categoria, ingredientes, alergenos, pasos from receta where id_receta=?";
             $consulta=$conexion->prepare($sentencia);
             $consulta->bind_param("i",$id_receta);
-            $consulta->bind_result($nombre, $tiempo, $n_personas, 
+            $consulta->bind_result($nombre, $tiempo,
                 $categoria, $ingredientes, $alergenos, $pasos);
             $consulta->execute();
             $consulta->store_result();
@@ -62,10 +62,6 @@
                         <label for="tiempo" class="form-label">Tiempo de preparación</label>
                         <input type="number" name="tiempo" value="'.$tiempo.'" class="form-control" id="tiempo" required>
                         <div id="emailHelp" class="form-text">En minutos</div>
-                    </div>
-                    <div class="mb-3">
-                        <label for="n_personas" class="form-label">Número de personas</label>
-                        <input type="number" name="n_personas" value="'.$n_personas.'" class="form-control" id="n_personas" aria-describedby="emailHelp" required>
                     </div>
                     <div class="mb-3">
                         <label for="ingredientes" class="form-label">Ingredientes</label>
@@ -111,7 +107,6 @@
             if(isset($_POST["modificar"])){
                 $n_nombre=$_POST["nombre_receta"];
                 $n_tiempo=$_POST["tiempo"];
-                $n_Npersonas=$_POST["n_personas"];
                 $n_ingredientes=$_POST["ingredientes"];
                 $n_pasos=$_POST["pasos"];
                 $n_categoria=$_POST["tipo"];
@@ -179,10 +174,10 @@
 
                    if($imagen==1){
                     $sentencia="update receta set nombre=?, imagen=? ,
-                        tiempo=?, num_personas=?, categoria=?, ingredientes=?, 
+                        tiempo=?,categoria=?, ingredientes=?, 
                         alergenos=?, pasos=?, fecha=? where id_receta=? && id_user=?";
                     $consulta=$conexion->prepare($sentencia);
-                    $consulta->bind_param("ssiisssssii", $n_nombre, $var, $n_tiempo,$n_Npersonas,
+                    $consulta->bind_param("ssisssssii", $n_nombre, $var, $n_tiempo,
                         $n_categoria, $n_ingredientes,
                         $n_alergeno, $n_pasos, $fecha_edicion, $id_receta, $id_user);
                     $consulta->execute();
@@ -192,10 +187,10 @@
 
                    }elseif($imagen==0){
                     $sentencia="update receta set nombre=?,
-                    tiempo=?, num_personas=?, categoria=?, ingredientes=?, 
+                    tiempo=?, categoria=?, ingredientes=?, 
                     alergenos=?, pasos=?, fecha=? where id_receta=? && id_user=?";
                     $consulta=$conexion->prepare($sentencia);
-                    $consulta->bind_param("siisssssii", $n_nombre, $n_tiempo,$n_Npersonas,
+                    $consulta->bind_param("sisssssii", $n_nombre, $n_tiempo,
                     $n_categoria, $n_ingredientes,
                     $n_alergeno, $n_pasos, $fecha_edicion, $id_receta, $id_user);
                     $consulta->execute();

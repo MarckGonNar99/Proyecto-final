@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <title>Menú Semanal</title>
     <link  rel="stylesheet" type="text/css" href="../estilos/estilos.css?1.1"/>
-    <script src="../app/app.js" defer></script>
+    <script src="../app/app_menu.js?1.0" defer></script>
 </head>
 <body>
     <?php
@@ -25,13 +25,54 @@
 
     if(isset($_SESSION['id'])){
         if($_SESSION['id']!='01'){
-            $nombre=$_SESSION["nombre"];
+
+            /* PARA FUNCIONALIDAD DE LOS BOTONES */
+            $id_user=$_SESSION['id'];
 
             $r1=".";
             $e1="..";
             $e2=".";
             echo insert_cab($r1);
             echo insert_nav($e1,$e2);
+
+            /* EN PRINCIPIO HABRA 3 BOTONES PARA CREAR MENU
+                1º MENÚ ALEATORIO
+                2º MENÚ DE MIS RECETAS
+                3º MENÚ DE ME GUSTA */
+
+
+            /* FILTRO PARA INGREDIENTES, ALERGENOS, CATEGORIA */
+
+            echo'
+                <main>
+                    <form>
+                        <legend>PLATOS PARA EL MENÚ</legend>
+                        <input type="button" class="btn btn-dark" id="receta_alea" name="receta_alea" value="Platos aleatorios">
+                        <input type="button" class="btn btn-dark" id="receta_mias" name="receta_mias" value="Platos de Mi Perfil">
+                        <input type="button" class="btn btn-dark" id="recetas_like" name="recetas_like" value="Recetas que me gustan">
+                        <input type="button" class="btn btn-warning" id="guardar" name="guardar" value="Empezar semana">
+                    </form>
+
+                    <div class="col-md-8 table-responsive">
+                        <table class="table table-hover table-dark">
+                        <thead>
+                            <tr>
+                                <th class="text-center">Lunes</th>
+                                <th class="text-center">Martes</th>
+                                <th class="text-center">Miércoles</th>
+                                <th class="text-center">Jueves</th>
+                                <th class="text-center">Viernes</th>
+                                <th class="text-center">Sábado</th>
+                                <th class="text-center">Domingo</th>
+                            </tr>
+                            <thead>
+                            <tbody id="lista_platos">
+
+                            </tbody>
+                        </table>
+                    </div>
+                    
+            ';
 
 
         }

@@ -60,20 +60,20 @@
                 $busqueda='%'.$busqueda.'%';
 
                 if($que_buscar=="nombre"){
-                    $sentencia="select id_receta, nombre, imagen, num_personas, categoria,
+                    $sentencia="select id_receta, nombre, imagen, categoria,
                     fecha, puntuacion from receta where nombre like ?";
                     $consulta=$conexion->prepare($sentencia);
                     $consulta->bind_param("s",$busqueda);
-                    $consulta->bind_result($id_receta ,$nombre_receta, $imagen, $n_personas, $categoria,
+                    $consulta->bind_result($id_receta ,$nombre_receta, $imagen, $categoria,
                     $fecha, $puntuacion);
                     $consulta->execute();
                     $consulta->store_result();
                 }elseif($que_buscar=="categoria"){
-                    $sentencia="select id_receta, nombre, imagen, num_personas, categoria,
+                    $sentencia="select id_receta, nombre, imagen, categoria,
                     fecha, puntuacion from receta where categoria like ?";
                     $consulta=$conexion->prepare($sentencia);
                     $consulta->bind_param("s",$busqueda);
-                    $consulta->bind_result($id_receta ,$nombre_receta, $imagen, $n_personas, $categoria,
+                    $consulta->bind_result($id_receta ,$nombre_receta, $imagen, $categoria,
                     $fecha, $puntuacion);
                     $consulta->execute();
                     $consulta->store_result();

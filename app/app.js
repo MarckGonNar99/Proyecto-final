@@ -7,7 +7,6 @@
 ********************************************* */
 /* FORMULARIOS */
     //Formularios de recetas
-
 const si_alergia = document.querySelector("#si");
 const no_alergia = document.querySelector("#no");
 const alergeno_input = document.querySelector("#alergeno");
@@ -21,3 +20,5 @@ si_alergia.addEventListener("click",()=>{
     alergeno_input.disabled=false;
     alergeno_input.required= 'true';
 })
+
+
