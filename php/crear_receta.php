@@ -155,7 +155,6 @@
 
                             //INSERTAR DATOS EN SQL
                     if($imagen==1){
-                        echo"HOLA";
                         $insertar_receta="insert into receta values(?,?,?,?,?,?,?,?,?,?,?)";
                         $consulta=$conexion->prepare($insertar_receta);
                         $consulta->bind_param("iississsssi",

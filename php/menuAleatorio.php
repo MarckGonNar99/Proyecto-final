@@ -5,7 +5,7 @@ require('./funciones.php');
     sleep(1);
     
     $datos=[];
-    $sentencia=$conexion->prepare("SELECT nombre FROM receta ORDER BY rand() LIMIT 7");        
+    $sentencia=$conexion->prepare("SELECT id_receta, nombre FROM receta ORDER BY rand() LIMIT 7");        
     $sentencia->execute();
     $resultado=$sentencia->get_result();
        
