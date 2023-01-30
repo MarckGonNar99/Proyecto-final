@@ -72,7 +72,7 @@ const nuevoMenu=(plato,enlace)=>{
 
     const celda_lunes=document.createElement("td");
     celda_lunes.innerText=plato["lunes"];
-    celda_lunes.classList.add("text-center");
+    celda_lunes.classList.add("plato");
 
     const enlace_lunes=document.createElement("a");
     enlace_lunes.innerText="Ver Más";
@@ -81,7 +81,7 @@ const nuevoMenu=(plato,enlace)=>{
 
     const celda_martes=document.createElement("td");
     celda_martes.innerText=plato["martes"];
-    celda_martes.classList.add("text-center");
+    celda_martes.classList.add("plato");
 
     const enlace_martes=document.createElement("a");
     enlace_martes.innerText="Ver Más";
@@ -90,7 +90,7 @@ const nuevoMenu=(plato,enlace)=>{
 
     const celda_miercoles=document.createElement("td");
     celda_miercoles.innerText=plato["miercoles"];
-    celda_miercoles.classList.add("text-center");
+    celda_miercoles.classList.add("plato");
 
     const enlace_miercoles=document.createElement("a");
     enlace_miercoles.innerText="Ver Más";
@@ -99,7 +99,7 @@ const nuevoMenu=(plato,enlace)=>{
 
     const celda_jueves=document.createElement("td");
     celda_jueves.innerText=plato["jueves"];
-    celda_jueves.classList.add("text-center");
+    celda_jueves.classList.add("plato");
 
     const enlace_jueves=document.createElement("a");
     enlace_jueves.innerText="Ver Más";
@@ -109,7 +109,7 @@ const nuevoMenu=(plato,enlace)=>{
 
     const celda_viernes=document.createElement("td");
     celda_viernes.innerText=plato["viernes"];
-    celda_viernes.classList.add("text-center");
+    celda_viernes.classList.add("plato");
 
     const enlace_viernes=document.createElement("a");
     enlace_viernes.innerText="Ver Más";
@@ -119,7 +119,7 @@ const nuevoMenu=(plato,enlace)=>{
 
     const celda_sabado=document.createElement("td");
     celda_sabado.innerText=plato["sabado"];
-    celda_sabado.classList.add("text-center");
+    celda_sabado.classList.add("plato");
 
     const enlace_sabado=document.createElement("a");
     enlace_sabado.innerText="Ver Más";
@@ -128,7 +128,7 @@ const nuevoMenu=(plato,enlace)=>{
 
     const celda_domingo=document.createElement("td");
     celda_domingo.innerText=plato["domingo"];
-    celda_domingo.classList.add("text-center");
+    celda_domingo.classList.add("plato");
 
     const enlace_domingo=document.createElement("a");
     enlace_domingo.innerText="Ver Más";
@@ -199,11 +199,6 @@ boton_random.addEventListener("click",async ()=>{
 
     /* BOTON DE GUARDAR */
     guardar.disabled=false;
-
-    guardar.addEventListener("click",async ()=>{
-        alert("hola");
-   
-    })
 })
 
 boton_mias.addEventListener("click",async ()=>{

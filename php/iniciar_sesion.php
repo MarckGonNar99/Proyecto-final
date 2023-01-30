@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <title>Inicio de Sesión</title>
     <link rel="stylesheet" type="text/css" href="../estilos/estilos.css">
-    <script text="text/JavaScript" src="../app/app.js" defer></script>
+    <script text="text/JavaScript" src="../app/app.js?1.1" defer></script>
 </head>
 <body>
     <?php
@@ -79,7 +79,6 @@
                       setcookie('mantener',$datos,time()+365*60*60*2,'/');
                 }
 
-                echo"<h3 class='mensaje'>ACCESO CONCEDIDIO</h3>";
                 echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:../index.php">';
             }else{
                 echo"<h3 class='mensaje'>ERROR</h3>";
@@ -87,5 +86,9 @@
         }
      }
     ?>
+    <script>
+        /* MANEJO DE PAGINAS JS */
+        var pagina="<?php echo"iniciar_sesion";?>";
+    </script>
 </body>
 </html>

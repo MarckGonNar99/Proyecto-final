@@ -43,6 +43,9 @@
                     <li class="nav-item">
                         <a class="nav-link" href="'.$e2.'/ranking.php">Ranking</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="'.$e2.'/lista_reporte.php">Reportes</a>
+                    </li>
                 </ul>
                 ';
             }else{/* USER */

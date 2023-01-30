@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <title>Crear Receta</title>
     <link href="../estilos/estilos.css" rel="stylesheet">
-    <script type="text/Javascript" src="../app/app.js" defer></script>
+    <script type="text/Javascript" src="../app/app.js?1.1" defer></script>
 </head>
 <body>
     <?php
@@ -25,6 +25,7 @@
         if(isset($_SESSION["id"])){
             if($_SESSION['id']!='01'){
                 //DATOS DE CABECERA Y CONEXION
+
                 $r1=".";
                 $e1="..";
                 $e2=".";
@@ -164,6 +165,8 @@
                         $consulta->fetch();
                         $consulta->close();
                         $conexion->close();
+
+                        echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:./mi_perfil.php?'.$id_user.'">';
                     }
                 }
             }else{
@@ -173,5 +176,9 @@
             /* NO REGISTRADOS NO PUEDEN PASAR */
         }
     ?>
+    <script>
+        /* MANEJO DE PAGINAS JS */
+        var pagina="<?php echo"crear_receta";?>";
+    </script>
 </body>
 </html>

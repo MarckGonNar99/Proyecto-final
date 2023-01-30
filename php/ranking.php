@@ -30,6 +30,8 @@
             echo insert_cab($r1);
             echo insert_nav($e1,$e2);
 
+            /* select usuario.nombre, sum(receta.puntuacion) from usuario, receta where usuario.id_user=receta.id_user ORDER BY sum(receta.puntuacion); */
+
 ?>
 </body>
 </html>

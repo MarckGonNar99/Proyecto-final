@@ -10,8 +10,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <title>Mi perfil</title>
-    <link  rel="stylesheet" type="text/css" href="../estilos/estilos.css?1.2"/>
-    <script src="../app/app.js" defer></script>
+    <link  rel="stylesheet" type="text/css" href="../estilos/estilos.css?1.3"/>
+    <script src="../app/app.js?1.1" defer></script>
 </head>
 <body>
 <?php
@@ -53,7 +53,7 @@
             echo '<main><div class="contenedor">';
                 /* BOTON PARA CREAR RECETA NUEVA */
             echo' 
-                <a href="'.$r1.'/crear_receta.php">
+                <a id="crear_receta" href="'.$r1.'/crear_receta.php">
                     <div class="boton_crear_receta">
                         <p>+</p><p>Crear Receta</p>
                     </div>
@@ -68,6 +68,7 @@
                                     $fecha, $puntuacion);
                 $consulta->execute();
                 $consulta->store_result();
+                
 
                 while($consulta->fetch()){
                     echo'
@@ -94,6 +95,10 @@
         /* NO PUEDES ENTRAR SI NO TIENES SESION */
     }
 ?>
+    <script>
+        /* MANEJO DE PAGINAS JS */
+        var pagina="<?php echo"mi_perfil";?>";
+    </script>
 </body>
 </html>
 

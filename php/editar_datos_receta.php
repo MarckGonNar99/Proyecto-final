@@ -51,7 +51,7 @@
 
             /* AÑADIR VALUES CON LOS DATOS SQL */
             echo'
-            <main class="formulario" id="sesion_inicio">
+            <main class="formulario" id="editar_receta">
                 <form method="POST" action="#" enctype="multipart/form-data">
                     <div class="mb-3">
                         <label for="nombre_receta" class="form-label">Nombre de la receta</label>
@@ -100,6 +100,7 @@
                         <input type="file" name="imagen" id="imagen"><br>
                     </div>
                     <button type="submit" name="modificar" class="btn btn-primary">Modificar</button>
+                    <button name="volver" class="btn btn-primary">Volver</button>
                 </form>
             </main>
             ';
@@ -111,9 +112,9 @@
                 $n_pasos=$_POST["pasos"];
                 $n_categoria=$_POST["tipo"];
                 if(isset($_POST['alergeno'])){
-                    $alergeno=$_POST['alergeno'];
+                    $n_alergeno=$_POST['alergeno'];
                 }else{
-                    $alergeno=null;  
+                    $n_alergeno=null;  
                 }
                 $fecha_edicion=date("Y-m-d");
 
@@ -183,7 +184,7 @@
                     $consulta->execute();
                     $consulta->fetch();
                     $consulta->close();
-                    echo"CAMBIASTE TODO";
+                    echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:./mi_perfil.php?'.$id_user.'">';
 
                    }elseif($imagen==0){
                     $sentencia="update receta set nombre=?,
@@ -196,8 +197,11 @@
                     $consulta->execute();
                     $consulta->fetch();
                     $consulta->close();
-                    echo"CAMBIASTE TODO MENOS LA IMAGEN";
+                    echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:./mi_perfil.php?'.$id_user.'">';
                    }
+            }
+            if(isset($_POST["volver"])){
+                echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:./mi_perfil.php?'.$id_user.'">';
             }
         }
     }

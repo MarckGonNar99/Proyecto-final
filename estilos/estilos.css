@@ -29,6 +29,7 @@ body{
 
 
 
+
 /* FORMULARIOS GENERAL*/
 .formulario{
     background: rgba(240, 255, 255, 0.822);
@@ -56,16 +57,45 @@ body{
     background: #baffff;
 
 }
+    /* REPORTE */
+#reporte{
+    padding:2%;
+    background-color: #32ff57;
+    margin-top: 5%;
+
+    height: 350px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+#reporte textarea{
+    height: 167px;
+}
+
+#editar_receta{
+    display: flex;
+    flex-direction: column;
+    padding: 4%;
+    border: #32ff57 dotted 1px;
+    margin-top: 3%;
+    width: 60%;
+}
+#editar_receta textarea{
+    height: 260px;
+}
+
 
 /* MI PERFIL */
 #datos_user{
-    background-color: #f8dfdf;
+    background-color: #ffffffac;
     display: flex;
     align-items: flex-end;
     justify-content: space-around;
+    padding: 7px;
 }
 #datos_user img{
-    width:5%;
+    width:6%;
+    border-radius: 50%;
 }
 
 .contenedor{
@@ -75,21 +105,95 @@ body{
     flex-wrap: wrap;
 }
 
+#crear_receta{
+    text-decoration: none;
+    font-family: cursive;
+    font-size: x-large;
+    width: 250px;
+    height: 200px;
+    margin: 20px 15px;
+}
+.boton_crear_receta p{
+    color:white
+}
+
 .boton_crear_receta{
     background-color: green;
     width: 250px;
     height: 200px;
     margin: 20px 15px;
+    border-radius: 15%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
 }
 
+
+
+
 .tarjeta_receta{
+    border-radius: 5%;
     background-color: antiquewhite;
     width: 400px;
-    height: 350px;
+    height: 380px;
     margin: 20px 15px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    transition-duration: 1s;
+}
+
+
+/*CAMBIOS SEGUN EL TIPO DE COMIDA */
+
+.carne{
+    background-color: #f78d8d;
+    transform: translateY(-15px);
+    box-shadow: 0 12px 16px black;
+    width: 400px;
+    height: 350px;
+    transition-duration: 1s;
+}
+.sopa{
+    background-color: #fea33b;
+    transform: translateY(-15px);
+    box-shadow: 0 12px 16px black;
+    width: 400px;
+    height: 350px;
+    transition-duration: 1s;
+}
+.pescado{
+    background-color: #4ae9fe;
+    transform: translateY(-15px);
+    box-shadow: 0 12px 16px black;
+    width: 400px;
+    height: 350px;
+    transition-duration: 1s;
+}
+.verdura{
+    background-color: #32ff57;
+    transform: translateY(-15px);
+    box-shadow: 0 12px 16px black;
+    width: 400px;
+    height: 350px;
+    transition-duration: 1s;
+}
+.arroz{
+    background-color: #ffd5d5;
+    transform: translateY(-15px);
+    box-shadow: 0 12px 16px black;
+    width: 400px;
+    height: 350px;
+    transition-duration: 1s;
+}
+.pasta{
+    background-color: #d1ff3b;
+    transform: translateY(-15px);
+    box-shadow: 0 12px 16px black;
+    width: 400px;
+    height: 350px;
+    transition-duration: 1s;
 }
 
 .tarjeta_receta img{
@@ -97,12 +201,20 @@ body{
     width:370px;
 }
 .tarjeta_receta a{
+    border-radius: 35%0;
     background-color: rgb(118, 111, 102);
     font-size: medium;
     padding: 10px 15px;
     display: block;
     text-align: center;
+    color: rgb(252, 228, 228);
+    text-decoration: none;
+    font-family: cursive;
 }
+.tarjeta_receta a:hover{
+    background-color: rgb(37, 34, 31);
+}
+
 
 .cuerpo_t{
     display: contents;
@@ -112,4 +224,81 @@ body{
     width: 400px;
     display: flex;
     justify-content: space-around;
+}
+
+/* VER RECETA */
+
+#ver_receta{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin: 5% 15%;
+    background-image: url("../imagenes/fondos/fondo_receta.webp");
+    font-size: xx-large;
+    padding-top: 1%;
+    font-family: monospace;
+    padding: 1.5%;
+    border-radius: 5%;
+}
+
+#imagen_receta{
+    width:400px;
+}
+.emoji{
+    width: 30px;
+}
+
+/* IMAGEN RESPONSIVE */
+
+#ver_receta div{
+    width:100%;
+    display: flex;
+    justify-content: space-around;
+}
+
+/* LISTA INGREDIENTEs */
+#ver_receta ul{
+    margin: 3%;
+    padding: 40px;
+    transition-duration: 1s;
+}
+.ingrediente{
+    transform: translateY(-15px);
+    /* box-shadow: 0 12px 16px rgb(38, 28, 28); */
+    transition-duration: 1s;
+    font-weight: bold;
+}
+
+/* LISTA DE PASOS */
+#ver_receta ol{
+    list-style: upper-roman;
+    margin: 5%;
+    padding: 40px;
+    transition-duration: 1s;
+}
+
+.pasos{
+    transform: translateY(-15px);
+    /* box-shadow: 0 12px 16px rgb(38, 28, 28); */
+    transition-duration: 1s;
+    font-weight: bolder;
+}
+
+/* MENU DE OPCIONES */
+.opciones{
+    margin-bottom: 4%;
+}
+
+.MEgustaAct{
+    background-color: red;
+}
+
+/* MENU TABLA */
+
+
+
+/* TABLA DE REPORTES */
+#tabla_reporte{
+    width: 85%;
+    margin:5%;
 }
