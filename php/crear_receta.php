@@ -117,7 +117,7 @@
                     $n=$_FILES['imagen']['name'];
                     $tipo_foto=$_FILES['imagen']['type'];
                     $temp=$_FILES['imagen']['tmp_name'];
-                    $ruta="../imagenes/recetas";
+                    $ruta="imagenes/recetas";
                     $existe =$_FILES['imagen']['error'];
 
 

@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <title>Recetas</title>
-    <link  rel="stylesheet" type="text/css" href="../estilos/estilos.css?2.5"/>
+    <link  rel="stylesheet" type="text/css" href="../estilos/estilos.css?2.7"/>
     <script src="../app/app.js?2.5" defer></script>
 </head>
 <body>
@@ -131,8 +131,13 @@
                 echo"
                     <div class='opciones'>
                         <form method='post' action='#' enctype='multipart/form-data'>
-                            <input type='hidden' value=".$fila["AUTO_INCREMENT"]." name='id_votacion' class='form-control' readonly>
-                            <button type='submit' name='gusta'><img id='meGusta' src='../imagenes/recetas/corazon_like.png'></button>
+                            <input type='hidden' value=".$fila["AUTO_INCREMENT"]." name='id_votacion' class='form-control' readonly>";
+                if($haVotado==0){
+                    echo"<button id='meGusta' type='submit' name='gusta'><img id='imagenGusta' src='../imagenes/recetas/corazon_vacio.png'></button>";
+                }else{
+                    echo"<button id='meGusta' type='submit' name='gusta'><img id='imagenGusta' src='../imagenes/recetas/corazon_like.png'></button>";
+                }
+                echo"
                         </form>
                     </div>
                     <a href='".$e2."/reportar.php?id_receta=".$id_receta."' class='btn btn-warning' role='button'>Reportar</a>
@@ -151,6 +156,7 @@
 
                         $id_votar=$_POST['id_votacion'];
                         $votacion=$conexion->query("INSERT INTO `votacion` (`id_voto`, `id_user`, `id_receta`) VALUES ('$id_votar', '$id', '$id_receta')");
+                        echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:./ver_receta.php?id_receta='.$id_receta.'">';
                     }else{
                         $n_puntos=$puntuacion-1;
                         $sentencia="update receta set puntuacion=? where id_receta=? ";
@@ -161,6 +167,7 @@
                         $consulta->close();
 
                         $votacion=$conexion->query("DELETE FROM `votacion` WHERE id_user='$id' and id_receta='$id_receta'");
+                        echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:./ver_receta.php?id_receta='.$id_receta.'">';
                     }
 
 
@@ -225,9 +232,6 @@
         /* MANEJO DE PAGINAS JS */
         var user="<?php echo $id;?>";
         var pagina="<?php echo"ver_receta";?>";
-        if(user != null){
-            var botonMeGusta="<?php echo $haVotado;?>";
-        }
         
     </script>
 </body>

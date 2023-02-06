@@ -8,7 +8,7 @@
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">
                     <img src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
-                    CON SESION
+                    <p id="logo">DunCocina</p>
                     </a>
                     <a href="'.$r1.'/cerrar_sesion.php" class="btn btn-secondary" role="button">Cerrar Sesión</a>
                 </div>
@@ -20,7 +20,7 @@
                 <div class="container-fluid">
                     <a class="navbar-brand" href="#">
                     <img src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
-                    NO SESION
+                    <p id="logo">DunCocina</p>
                     </a>
                     <a href="'.$r1.'/iniciar_sesion.php" class="btn btn-secondary" role="button">Iniciar Sesión</a>
                 </div>
@@ -89,24 +89,72 @@
 
     /* Pie de página Invariable */
     //<a href="'.$e2.'/editar_datos_user.php" class="btn btn-warning" role="button">Editar Datos</a>
-    function insert_footer(){
+    function insert_footer_index(){
         $foot='
-        <footer>
+        <footer id="footer_index">
             <div>
+                <div class="social">
                 <p>Redes Sociales</p>
-                <div id="social">
-                    <a><img></a>//TWITTER
-                    <a><img></a>//INSTAGRAM
-                    <a><img></a>//FACEBOOK
+                    <a href="https://twitter.com/?lang=es"><img class="red" src="imagenes/otro/twitter.png">Twitter</a>
+                    <a href="https://www.instagram.com/"><img class="red" src="imagenes/otro/insta.png">Instagram</a>
+                    <a href="https://es-la.facebook.com/"><img class="red" src="imagenes/otro/face.png">Facebook</a>
                 </div>
             </div>
-            <div>
-                <a>Políticas de privacidad</a>
+            <div class="social">
+                <a href="php/politicas.php">Políticas de privacidad</a>
+                <a href="php/cookies.php">Política de Cookies</a>
+                <a href="php/aviso.php">Aviso legal y términos de uso</a>
             </div>
-            <div><a>Contacto</a></div>
+            <div class="social">
+                <p>Contacto con el creador</p>
+                <a href="https://twitter.com/?lang=es"><img class="red" src="imagenes/otro/twitter.png">Twitter</a>
+                <a href="https://www.instagram.com/"><img class="red" src="imagenes/otro/insta.png">Instagram</a>
+                <a href="https://github.com/"><img class="red" src="imagenes/otro/git.png">Git</a>
+            </div>
         </footer>
         ';
         return $foot;
+    }
+    function insert_footer(){
+        $foot='
+        <footer id="pie_pagina">
+            <div>
+                <div class="social">
+                <p>Redes Sociales</p>
+                    <a href="https://twitter.com/?lang=es"><img class="red" src="../imagenes/otro/twitter.png">Twitter</a>
+                    <a href="https://www.instagram.com/"><img class="red" src="../imagenes/otro/insta.png">Instagram</a>
+                    <a href="https://es-la.facebook.com/"><img class="red" src="../imagenes/otro/face.png">Facebook</a>
+                </div>
+            </div>
+            <div class="social">
+                <a href="politicas.php">Políticas de privacidad</a>
+                <a href="cookies.php">Política de Cookies</a>
+                <a href="aviso.php">Aviso legal y términos de uso</a>
+            </div>
+            <div class="social">
+                <p>Contacto con el creador</p>
+                <a href="https://twitter.com/?lang=es"><img class="red" src="../imagenes/otro/twitter.png">Twitter</a>
+                <a href="https://www.instagram.com/"><img class="red" src="../imagenes/otro/insta.png">Instagram</a>
+                <a href="https://github.com/"><img class="red" src="../imagenes/otro/git.png">Git</a>
+            </div>
+        </footer>
+        ';
+        return $foot;
+    }
+
+    function insert_cookies(){
+        echo"
+        <div class='cookie-container'>
+            <div class='cookie-content'>
+                Para mejorar al máximo tu experiencia, esta web utiliza cookies. Si utilizas la web significa que estás de acuerdo con que usemos cookies. Hemos publicado una nueva política de cookies,
+                que deberás leer para entender mejor cuáles son las cookies que utilizamos.
+                <div class='buttons'>
+                    <button class='boton_acepto'>Acepto las galletas</button>
+                    <a class='item' href='#' target='_blank'>Leer más</a>
+                </div> 
+            </div> 
+        </div>
+        ";
     }
 
     function conexion(){

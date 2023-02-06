@@ -8,6 +8,11 @@ body{
     width: 100%;
     height: 100%;
 }
+#pagina_texto{
+    background-image: url("../imagenes/fondos/fondo_texto.jpg");
+    width: 100%;
+    height: 100%;
+}
 /* NAVEGADOR */
 .nav{
     background: aliceblue;
@@ -27,8 +32,22 @@ body{
     color: rgb(46, 0, 83);
 }
 
+main{
+    
+    margin-bottom: 15%;
 
+}
 
+/* PAGINAS DE TEXTO */
+#texto{
+    background-color: aliceblue;
+    margin: 15%;
+    padding: 4%;
+}
+#texto p{
+    margin-bottom: 4%;
+    font-size: larger;
+}
 
 /* FORMULARIOS GENERAL*/
 .formulario{
@@ -145,6 +164,7 @@ body{
 }
 
 
+
 /*CAMBIOS SEGUN EL TIPO DE COMIDA */
 
 .carne{
@@ -152,7 +172,7 @@ body{
     transform: translateY(-15px);
     box-shadow: 0 12px 16px black;
     width: 400px;
-    height: 350px;
+    height: 380px;
     transition-duration: 1s;
 }
 .sopa{
@@ -160,7 +180,7 @@ body{
     transform: translateY(-15px);
     box-shadow: 0 12px 16px black;
     width: 400px;
-    height: 350px;
+    height: 380px;
     transition-duration: 1s;
 }
 .pescado{
@@ -168,7 +188,7 @@ body{
     transform: translateY(-15px);
     box-shadow: 0 12px 16px black;
     width: 400px;
-    height: 350px;
+    height: 380px;
     transition-duration: 1s;
 }
 .verdura{
@@ -176,7 +196,7 @@ body{
     transform: translateY(-15px);
     box-shadow: 0 12px 16px black;
     width: 400px;
-    height: 350px;
+    height: 380px;
     transition-duration: 1s;
 }
 .arroz{
@@ -184,7 +204,7 @@ body{
     transform: translateY(-15px);
     box-shadow: 0 12px 16px black;
     width: 400px;
-    height: 350px;
+    height: 380px;
     transition-duration: 1s;
 }
 .pasta{
@@ -192,7 +212,7 @@ body{
     transform: translateY(-15px);
     box-shadow: 0 12px 16px black;
     width: 400px;
-    height: 350px;
+    height: 380px;
     transition-duration: 1s;
 }
 
@@ -211,6 +231,10 @@ body{
     text-decoration: none;
     font-family: cursive;
 }
+.tarjeta_receta a{
+    margin-bottom:20px
+}
+
 .tarjeta_receta a:hover{
     background-color: rgb(37, 34, 31);
 }
@@ -289,8 +313,9 @@ body{
     margin-bottom: 4%;
 }
 
-.MEgustaAct{
-    background-color: red;
+#meGusta{
+    background: none;
+    border:none
 }
 
 /* MENU TABLA */
@@ -301,4 +326,105 @@ body{
 #tabla_reporte{
     width: 85%;
     margin:5%;
+}
+
+
+/* RANKING */
+#ranking{
+    width: 75%;
+    margin-left: 10%;
+    margin-top: 3%;
+    font-size: larger;
+    font-family: monospace;
+}
+#ranking tr{
+    border-top: grey solid 1px;
+    background-color: #baffff;
+    text-align: center;
+}
+.primero:hover{
+    color:gold;
+}
+
+.segundo:hover{
+    color:silver;
+}
+
+.tercero:hover{
+    color:rgb(200, 197, 52);
+}
+
+/* PIE DE PAGINA */
+#footer_index{
+    background: #111;
+    height: auto;
+    width: 100%;
+    padding-top: 40px;
+    color: #fff;
+    display: flex;
+    justify-content: space-around;
+}
+
+#pie_pagina{
+    background: #111;
+    height: auto;
+    width: 100%;
+    padding-top: 40px;
+    color: #fff;
+    display: flex;
+    justify-content: space-around;
+}
+
+/* FOOTER LOGOS */
+.red{
+    width: 30px;
+}
+
+.social{
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5%;
+}
+
+/* INDEX */
+.recetas_index{
+    margin-top: 5%;
+    margin-bottom: 3%;
+    background-color: aliceblue;
+    padding: 15px;
+
+}
+
+.recetas_index h3{
+    display: flex;
+    justify-content: center;
+}
+
+#informacion{
+    margin: 6%;
+    padding: 19px;
+    background-color: aliceblue;
+    box-shadow: 0 7px 16px black;
+}
+
+/* COOKIES */
+
+
+.cookie-container{
+    background-image: url("../imagenes/otro/fondo_cookies.jpg");
+    border-radius: 20px;
+    box-shadow: 0 7px 16px black;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+    padding: 15px;
+}
+.cookie-content{
+    background-color: aliceblue;
+    opacity: 90%;
+    font-size: larger;
+}
+
+.activo{
+    visibility: hidden;
 }

@@ -59,7 +59,6 @@
 
                 $fecha_caduca=date("Y-m-d",strtotime($fecha."+ 1 week"));
                 $fecha_hoy=date("Y-m-d");
-                
 
                 if($fecha_hoy==$fecha_caduca){
                     $sentencia="delete from menu where id_user=?";
@@ -70,7 +69,6 @@
                     $consulta->close();
                 }
 
-                $consulta->close();
 
                 $array_dias=array($lunes,$martes, $miercoles, 
                 $jueves, $viernes, $sabado, $domingo);
