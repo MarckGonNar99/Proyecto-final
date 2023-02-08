@@ -130,14 +130,12 @@ if(pagina=="mi_perfil"){
   const cookies=document.querySelector(".cookie-container");
   const boton=document.querySelector(".boton_acepto");
   boton.addEventListener("click",()=>{
-    console.log("pepe");
     cookies.classList.add("activo");
     localStorage.setItem("cookies","true");
   });
   if(localStorage.getItem("cookies")){
     cookies.classList.add("activo");
   }
-  console.log(localStorage.getItem("cookies"));
 
   setTimeout(
     ()=>{
@@ -146,6 +144,67 @@ if(pagina=="mi_perfil"){
       }
     },2000
   );
+}else if(pagina=="iniciar_sesion"){
+  /* MENSAJE DE ERROR */
+  if(error==1){
+    const pass=document.querySelector("#pass");
+    let texto_error=document.createElement("h6");
+    texto_error.innerText="Hay algo mal";
+    pass.after(texto_error);
+  }
+}else if(pagina=="recetas"){
+  const tarjeta=document.querySelectorAll(".tarjeta_receta");
+  tarjeta.forEach(
+    (item)=>{
+      item.addEventListener("mouseover",()=>{
+        var categoria=item.querySelector("h6");
+        if(categoria.innerHTML=="Carnes y aves"){
+          item.classList.add("carne");
+        }else if(categoria.innerHTML=="Sopas, cremas y cocidos"){
+          item.classList.add("sopa");
+        }else if(categoria.innerHTML=="Arroz"){
+          item.classList.add("arroz");
+        }else if(categoria.innerHTML=="Verduras y legumbres"){
+          item.classList.add("verdura");
+        }else if(categoria.innerHTML=="Pescado y mariscos"){
+          item.classList.add("pescado");
+        }else if(categoria.innerHTML=="Pastas"){
+          item.classList.add("pasta");
+        }
+      })
+    }
+  )
+  tarjeta.forEach(
+    (item)=>{
+      item.addEventListener("mouseleave",()=>{
+        var categoria=item.querySelector("h6");
+        if(categoria.innerHTML=="Carnes y aves"){
+          item.classList.remove("carne");
+        }else if(categoria.innerHTML=="Sopas, cremas y cocidos"){
+          item.classList.remove("sopa");
+        }else if(categoria.innerHTML=="Arroz"){
+          item.classList.remove("arroz");
+        }else if(categoria.innerHTML=="Verduras y legumbres"){
+          item.classList.remove("verdura");
+        }else if(categoria.innerHTML=="Pescado y mariscos"){
+          item.classList.remove("pescado");
+        }else if(categoria.innerHTML=="Pastas"){
+          item.classList.remove("pasta");
+        }
+      })
+    }
+  )
+}else if(pagina=="contraseña"){
+  const caja=document.querySelector("#ver");
+  const input=document.querySelector("#contraseña");
+  caja.addEventListener("click",()=>{
+    let check=caja.checked;
+    if(check==true){
+      input.type="text";
+    }else if(check==false){
+      input.type="password";
+    }
+  })
 }
 
 

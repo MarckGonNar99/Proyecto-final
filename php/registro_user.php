@@ -21,7 +21,13 @@
     }
      /* Comprobar sesion abierta */
      if(isset($_SESSION["id"])){
-        /* ERROR */
+        echo"
+            <div id='error'>
+               <img src='../imagenes/otro/error.png'>
+                <p>Usted ya está registrado</p>   
+            </div>
+            ";
+            echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:../index.php">';
      }else{
         $conexion=conexion();
         $r1=".";
@@ -42,6 +48,7 @@
                     <input type="password" name="pass" class="form-control" id="contraseña">
                     </div>
                     <button type="submit" name="registro" class="btn btn-primary">Crear</button>
+                    <a href="'.$e2.'/iniciar_sesion.php" class="btn btn-danger" role="button">Volver</a>
                 </form>
             </main>
             ';
@@ -69,7 +76,7 @@
                 /* ERROR EN EL REGISTRO */
             }
         }
-     }
+    }
     ?>
 </body>
 </html>

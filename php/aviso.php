@@ -150,7 +150,7 @@
                 estas Condiciones legales o cualquier comentario sobre el portal
                 DunCocina, por favor diríjase a xxxxxx@gmail.com
 
-                De parte del equipo que formamos DunCOcina te agradecemos el
+                De parte del equipo que formamos DunCocina te agradecemos el
                 tiempo dedicado en leer este Aviso Legal
                 </p>
             </main>

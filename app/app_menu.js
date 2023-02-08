@@ -3,8 +3,8 @@ const tabla_menu = document.querySelector("#lista_platos");
 const boton_random=document.querySelector("#receta_alea");
 const boton_mias=document.querySelector("#receta_mias");
 const boton_like=document.querySelector("#recetas_like");
-const guardar=document.querySelector("#guardar");
-const formu=document.querySelector("#menu_form")
+const guardar=document.querySelector("#guardar_boton");
+const formu=document.querySelector("#guardar")
 
 guardar.disabled=true;
 
@@ -60,7 +60,6 @@ const nuevosValores=(valor)=>{
     div.appendChild(input_viernes);
     div.appendChild(input_sabado);
     div.appendChild(input_domingo);
-
     return div;
 
 }
@@ -71,17 +70,18 @@ const nuevoMenu=(plato,enlace)=>{
     const nueva_fila = document.createElement("tr");
 
     const celda_lunes=document.createElement("td");
-    celda_lunes.innerText=plato["lunes"];
-    celda_lunes.classList.add("plato");
+    const p_lunes=document.createElement("p");
+    p_lunes.innerText=plato["lunes"];
+    p_lunes.classList.add("plato");
 
     const enlace_lunes=document.createElement("a");
     enlace_lunes.innerText="Ver Más";
-    enlace_lunes.target="_blank";
     enlace_lunes.href="./ver_receta.php?id_receta="+enlace["e_lunes"];
 
     const celda_martes=document.createElement("td");
-    celda_martes.innerText=plato["martes"];
-    celda_martes.classList.add("plato");
+    const p_martes=document.createElement("p");
+    p_martes.innerText=plato["martes"];
+    p_martes.classList.add("plato");
 
     const enlace_martes=document.createElement("a");
     enlace_martes.innerText="Ver Más";
@@ -89,8 +89,9 @@ const nuevoMenu=(plato,enlace)=>{
     enlace_martes.href="./ver_receta.php?id_receta="+enlace["e_martes"];
 
     const celda_miercoles=document.createElement("td");
-    celda_miercoles.innerText=plato["miercoles"];
-    celda_miercoles.classList.add("plato");
+    const p_miercoles=document.createElement("p");
+    p_miercoles.innerText=plato["miercoles"];
+    p_miercoles.classList.add("plato");
 
     const enlace_miercoles=document.createElement("a");
     enlace_miercoles.innerText="Ver Más";
@@ -98,8 +99,9 @@ const nuevoMenu=(plato,enlace)=>{
     enlace_miercoles.href="./ver_receta.php?id_receta="+enlace["e_miercoles"];
 
     const celda_jueves=document.createElement("td");
-    celda_jueves.innerText=plato["jueves"];
-    celda_jueves.classList.add("plato");
+    const p_jueves=document.createElement("p");
+    p_jueves.innerText=plato["jueves"];
+    p_jueves.classList.add("plato");
 
     const enlace_jueves=document.createElement("a");
     enlace_jueves.innerText="Ver Más";
@@ -108,8 +110,9 @@ const nuevoMenu=(plato,enlace)=>{
 
 
     const celda_viernes=document.createElement("td");
-    celda_viernes.innerText=plato["viernes"];
-    celda_viernes.classList.add("plato");
+    const p_viernes=document.createElement("p");
+    p_viernes.innerText=plato["viernes"];
+    p_viernes.classList.add("plato");
 
     const enlace_viernes=document.createElement("a");
     enlace_viernes.innerText="Ver Más";
@@ -118,8 +121,9 @@ const nuevoMenu=(plato,enlace)=>{
 
 
     const celda_sabado=document.createElement("td");
-    celda_sabado.innerText=plato["sabado"];
-    celda_sabado.classList.add("plato");
+    const p_sabado=document.createElement("p");
+    p_sabado.innerText=plato["sabado"];
+    p_sabado.classList.add("plato");
 
     const enlace_sabado=document.createElement("a");
     enlace_sabado.innerText="Ver Más";
@@ -127,8 +131,9 @@ const nuevoMenu=(plato,enlace)=>{
     enlace_sabado.href="./ver_receta.php?id_receta="+enlace["e_sabado"];
 
     const celda_domingo=document.createElement("td");
-    celda_domingo.innerText=plato["domingo"];
-    celda_domingo.classList.add("plato");
+    const p_domingo=document.createElement("p");
+    p_domingo.innerText=plato["domingo"];
+    p_domingo.classList.add("plato");
 
     const enlace_domingo=document.createElement("a");
     enlace_domingo.innerText="Ver Más";
@@ -136,18 +141,25 @@ const nuevoMenu=(plato,enlace)=>{
     enlace_domingo.href="./ver_receta.php?id_receta="+enlace["e_domingo"];
 
     nueva_fila.appendChild(celda_lunes);
+    celda_lunes.appendChild(p_lunes);
     celda_lunes.appendChild(enlace_lunes);
     nueva_fila.appendChild(celda_martes);
+    celda_martes.appendChild(p_martes);
     celda_martes.appendChild(enlace_martes);
     nueva_fila.appendChild(celda_miercoles);
+    celda_miercoles.appendChild(p_miercoles);
     celda_miercoles.appendChild(enlace_miercoles);
     nueva_fila.appendChild(celda_jueves);
+    celda_jueves.appendChild(p_jueves);
     celda_jueves.appendChild(enlace_jueves);
     nueva_fila.appendChild(celda_viernes);
+    celda_viernes.appendChild(p_viernes);
     celda_viernes.appendChild(enlace_viernes);
     nueva_fila.appendChild(celda_sabado);
+    celda_sabado.appendChild(p_sabado);
     celda_sabado.appendChild(enlace_sabado);
     nueva_fila.appendChild(celda_domingo);
+    celda_domingo.appendChild(p_domingo);
     celda_domingo.appendChild(enlace_domingo);
 
     return nueva_fila;
@@ -158,6 +170,9 @@ const nuevoMenu=(plato,enlace)=>{
 
 boton_random.addEventListener("click",async ()=>{
     
+
+        /* BOTON DE GUARDAR */
+        guardar.disabled=false;
 
     const respuesta=await fetch("menuAleatorio.php");
     const datos = await respuesta.json();
@@ -197,14 +212,5 @@ boton_random.addEventListener("click",async ()=>{
     }
     formu.appendChild(nuevosValores(datos_bd));
 
-    /* BOTON DE GUARDAR */
-    guardar.disabled=false;
-})
 
-boton_mias.addEventListener("click",async ()=>{
-    console.log("popo")
-})
-
-boton_like.addEventListener("click",async ()=>{
-    console.log("pipi")
 })

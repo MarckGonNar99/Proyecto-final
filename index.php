@@ -96,7 +96,7 @@
         /* 3 RECETAS MAS PUNTUADAS*/
         $recetasTop="SELECT u.nombre, r.id_receta, r.nombre, r.imagen, r.categoria, r.fecha, r.puntuacion
         FROM receta r, usuario u where r.id_user=u.id_user
-        ORDER BY sum(r.puntuacion) DESC LIMIT 0,3;";
+        ORDER BY r.puntuacion DESC LIMIT 0,3;";
         $consulta=$conexion->prepare($recetasTop);
         $consulta->bind_result($nombre_user,$id_receta,$nombre_receta, $imagen, $categoria,
         $fecha, $puntuacion);

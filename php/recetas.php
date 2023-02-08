@@ -10,8 +10,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <title>Recetas</title>
-    <link  rel="stylesheet" type="text/css" href="../estilos/estilos.css"/>
-    <script src="../app/app.js" defer></script>
+    <link  rel="stylesheet" type="text/css" href="../estilos/estilos.css?3.0"/>
+    <script src="../app/app.js?3.5" defer></script>
 </head>
 <body>
 <?php
@@ -34,22 +34,18 @@
             echo
                 '
                 <section class="buscar">
-                    <form method="post" action="#" class="d-flex">
+                    <form method="post" action="#">
                         <div>
-                            <div>
-                                <input type="radio" id="nombre" name="que_busca" value="nombre" checked>
-                                <label for="nombre">Nombre</label>
-                            </div>
-                            <div>
-                                <input type="radio" id="categoria" name="que_busca" value="categoria">
-                                <label for="categoria">Categoria</label>
-                            </div>
+                            <select name="que_busca" required>
+                                <option value="nombre">Nombre</option>
+                                <option value="categoria">Categoria</option>
+                            </select>
                         </div>
                         <div>
                             <input type="text" name="dato" class="form-control me-2"  placeholder="Buscar" aria-label="Search" required>
-                            <input type="submit" class="btn btn-dark" name="buscar" value="Buscar">
-                            <a href="'.$e2.'/recetas.php?" class="btn btn-warning" role="button">Resetear</a>
+                            <a href="'.$e2.'/recetas.php?" class="btn btn-warning" role="button">Volver</a>
                         </div>
+                        <input type="submit" class="btn btn-dark" name="buscar" value="Buscar">
                     </form>
                 </section>
                 ';
@@ -80,16 +76,33 @@
                 }else{
                     /* ERROR AL BUSCAR */
                 }
-
+                echo"<main><div class='contenedor'>";
                 while($consulta->fetch()){
-                    echo $nombre_receta;
+                    echo"
+                    <div class='tarjeta_receta'>
+                        <h6>$categoria</h6>
+                        <img src='../".$imagen."' class='card-img-top' alt='...'>
+                        <div class='cuerpo_t'>
+                            <h5>$nombre_receta</h5>
+                        </div>
+                        <div class='data_t'>
+                                <p>$fecha</p>
+                                <small>$puntuacion ptos</small></p>
+                        </div>
+                        <a href='$e2/ver_receta.php?id_receta=".$id_receta."'>Ver más</a>
+                    </div>
+                    
+                    ";
+
                 }
+                echo "</div></main>";
             }else{
+            echo"<main><div class='contenedor'>";
                 /* CREANDO PAGINACIÓN DE TODOS LOS DATOS */
             $result = $conexion->query('SELECT COUNT(*) as total_products FROM receta');
             $row = $result->fetch_assoc();
             $num_total_rows = $row['total_products'];
-            $n_item_pagina=2;
+            $n_item_pagina=6;
 
             if($num_total_rows>0){
                 $page = false;
@@ -105,12 +118,6 @@
                 }
 
                 $total_pages = ceil($num_total_rows / $n_item_pagina);
- 
-                //pongo el numero de registros total, el tamano de pagina y la pagina que se muestra
-                echo '<h3>Numero de articulos: '.$num_total_rows.'</h3>';
-                echo '<h3>En cada pagina se muestra '.$n_item_pagina.' articulos ordenados por fecha en formato descendente.</h3>';
-                echo '<h3>Mostrando la pagina '.$page.' de ' .$total_pages.' paginas.</h3>';
-
 
                 
                 $result = $conexion->query(
@@ -119,11 +126,25 @@
                 );
 
                 if ($result->num_rows > 0) {
-                    echo '<div>';
                     while ($row = $result->fetch_assoc()) {
-                        echo"<img src=".$row['imagen'].">";
+                        echo'
+                    
+                        <div class="tarjeta_receta">
+                            <h6>'.$row["categoria"].'</h6>
+                            <img src="../'.$row["imagen"].'" class="card-img-top" alt="...">
+                            <div class="cuerpo_t">
+                                <h5>'.$row["nombre"].'</h5>
+                            </div>
+                            <div class="data_t">
+                                    <p>'.$row["fecha"].'</p>
+                                    <small>'.$row["puntuacion"].' ptos</small></p>
+                            </div>
+                            <a href='.$e2.'/ver_receta.php?id_receta='.$row["id_receta"].'>Ver más</a>
+                        </div>
+                    ';
                     }
                 }
+                echo"</div>";
 
                 echo '<nav>';
                 echo '<ul class="pagination">';
@@ -146,13 +167,17 @@
                     }
                 }
                 echo '</ul>';
-                echo '</nav>';
+                echo '</nav></main>';
             }
 
             }
 
             
-
+            echo insert_footer();
 ?>
+    <script>
+        /* MANEJO DE PAGINAS JS */
+        var pagina="<?php echo"recetas";?>";
+    </script>
 </body>
 </html>

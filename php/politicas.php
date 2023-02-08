@@ -119,7 +119,7 @@
                     tratamiento de tus datos, en cuyo caso únicamente los conservaremos para
                     el ejercicio o la defensa de reclamaciones.
                     En determinadas circunstancias y por motivos relacionados con tu situación
-                    particular, podrás oponerte al tratamiento de tus datos. Gabriela dejará de
+                    particular, podrás oponerte al tratamiento de tus datos. Marcos dejará de
                     tratar los datos, salvo por motivos legítimos imperiosos, o el ejercicio o
                     la defensa de posibles reclamaciones.<br>
 
@@ -129,7 +129,7 @@
                     retirada.<br>
 
                     Si deseas hacer uso de cualquiera de tus derechos puede dirigirse a
-                    xxxxxxp@gmail.com.<br>
+                    xxxxxx@gmail.com.<br>
 
                     Por último, te informamos que puedes dirigirte ante la
                     Agencia Española de Protección de Datos y demás organismos

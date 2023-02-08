@@ -10,8 +10,8 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <title>Inicio de Sesión</title>
-    <link rel="stylesheet" type="text/css" href="../estilos/estilos.css">
-    <script text="text/JavaScript" src="../app/app.js?1.1" defer></script>
+    <link rel="stylesheet" type="text/css" href="../estilos/estilos.css?3.5">
+    <script text="text/JavaScript" src="../app/app.js?3.0" defer></script>
 </head>
 <body>
     <?php
@@ -21,7 +21,13 @@
     }
      /* Comprobar sesion abierta */
      if(isset($_SESSION["id"])){
-        /* ERROR */
+        echo"
+            <div id='error'>
+               <img src='../imagenes/otro/error.png'>
+                <p>No tiene acceso a esta zona</p>   
+            </div>
+        ";
+        echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:../index.php">';
      }else{
         $conexion=conexion();
         $r1=".";
@@ -29,17 +35,18 @@
         $e2=".";
         echo insert_cab($r1);
         echo insert_nav($e1,$e2);
+        $error=0;
         /* FORMULARIO DE SESION */
         echo '
             <main class="formulario" id="sesion_inicio">
                 <form method="post" action="#">
                     <div class="mb-3">
                     <label for="exampleInputEmail1"  class="form-label">Nombre de Usuario</label>
-                    <input type="text" name="nombre" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                    <input type="text" name="nombre" class="form-control">
                     </div>
                     <div class="mb-3">
-                    <label for="exampleInputPassword1"  class="form-label">Contraseña</label>
-                    <input type="password" name="pass" class="form-control" id="exampleInputPassword1">
+                    <label for="pass"  class="form-label">Contraseña</label>
+                    <input type="password" name="pass" class="form-control" id="pass">
                     </div>
                     <div class="mb-3 form-check">
                     <input type="checkbox" class="form-check-input" id="exampleCheck1">
@@ -78,10 +85,10 @@
                       $datos=session_encode();
                       setcookie('mantener',$datos,time()+365*60*60*2,'/');
                 }
-
+                
                 echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:../index.php">';
             }else{
-                echo"<h3 class='mensaje'>ERROR</h3>";
+                $error=1;
             }
         }
      }
@@ -89,6 +96,7 @@
     <script>
         /* MANEJO DE PAGINAS JS */
         var pagina="<?php echo"iniciar_sesion";?>";
+        var error="<?php echo $error;?>";
     </script>
 </body>
 </html>

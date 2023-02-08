@@ -100,7 +100,7 @@
                         <input type="file" name="imagen" id="imagen"><br>
                     </div>
                     <button type="submit" name="modificar" class="btn btn-primary">Modificar</button>
-                    <button name="volver" class="btn btn-primary">Volver</button>
+                    <a href="'.$e2.'/mi_perfil.php" class="btn btn-danger" role="button">Volver</a>
                 </form>
             </main>
             ';
@@ -203,6 +203,22 @@
             if(isset($_POST["volver"])){
                 echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:./mi_perfil.php?'.$id_user.'">';
             }
+        }else{
+            echo"
+                <div id='error'>
+                <img src='../imagenes/otro/error.png'>
+                    <p>No tiene acceso a esta zona</p>   
+                </div>
+            ";
+            echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:../index.php">';
         }
+    }else{
+        echo"
+            <div id='error'>
+               <img src='../imagenes/otro/error.png'>
+                <p>No tiene acceso a esta zona</p>   
+            </div>
+        ";
+        echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:../index.php">';
     }
 ?>

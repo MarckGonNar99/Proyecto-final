@@ -41,7 +41,7 @@
                 $fila=$consulta->fetch_array(MYSQLI_ASSOC);
 
                 echo'
-                    <main class="formulario" id="sesion_inicio">
+                    <main class="formulario" id="crear_receta_form">
                         <form method="POST" action="#" enctype="multipart/form-data">
                         <input type="hidden" value='.$fila["AUTO_INCREMENT"].' name="id" class="form-control" id="id" readonly>
                             <div class="mb-3">
@@ -91,6 +91,7 @@
                                 <input type="file" name="imagen" id="imagen" required><br>
                             </div>
                             <button type="submit" name="crear" class="btn btn-primary">Crear</button>
+                            <a href="'.$e2.'/mi_perfil.php" class="btn btn-danger" role="button">Volver</a>
                         </form>
                 </main>
             ';
@@ -170,10 +171,22 @@
                     }
                 }
             }else{
-                /* ADMIN NO PUEDE CREAR RECETAS */
+                echo"
+                    <div id='error'>
+                        <img src='../imagenes/otro/error.png'>
+                        <p>No tiene acceso a esta zona</p>   
+                    </div>
+                ";
+                echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:../index.php">';
             }
         }else{
-            /* NO REGISTRADOS NO PUEDEN PASAR */
+            echo"
+                <div id='error'>
+                    <img src='../imagenes/otro/error.png'>
+                    <p>No tiene acceso a esta zona</p>   
+                </div>
+            ";
+            echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:../index.php">';
         }
     ?>
     <script>

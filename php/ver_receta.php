@@ -60,7 +60,7 @@
                         <div>
                             <h2>'.$nombre.'</h2>
                         </div>
-                        <img id="imagen_receta" src="'.$imagen.'">
+                        <img id="imagen_receta" src="../'.$imagen.'">
                         <div>
                             <p>'.$tiempo.' minutos</p>
                             <p>'.$categoria.'</p>
@@ -115,9 +115,9 @@
             }else{
 
                 /* COMPROBAR QUE HAYA VOTADO ANTES */
-                $ComprobarVoto=("select count(*) from votacion where id_user=?");
+                $ComprobarVoto=("select count(*) from votacion where id_user=? and id_receta=?");
                 $consulta=$conexion->prepare($ComprobarVoto);
-                $consulta->bind_param("i",$id);
+                $consulta->bind_param("ii",$id,$id_receta);
                 $consulta->bind_result($haVotado);
                 $consulta->execute();
                 $consulta->store_result();
@@ -141,7 +141,7 @@
                         </form>
                     </div>
                     <a href='".$e2."/reportar.php?id_receta=".$id_receta."' class='btn btn-warning' role='button'>Reportar</a>
-                    </main>
+                    </div>
                 ";
 
                 if(isset($_POST["gusta"])){
@@ -174,6 +174,7 @@
                 }
                 
             }
+            echo"</div></main>";
 
         }else{
 
@@ -225,8 +226,9 @@
             foreach($listaPasos as $valor){
                 echo"<li>".$valor.".</li>";
             }
-            echo"</ol></main>";
+            echo"</ol></div></main>";
         }
+        echo insert_footer();
     ?>
     <script>
         /* MANEJO DE PAGINAS JS */

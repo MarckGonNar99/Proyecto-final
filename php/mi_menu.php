@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <title>Menú Semanal</title>
     <link  rel="stylesheet" type="text/css" href="../estilos/estilos.css?1.5"/>
-    <script src="../app/app_menu.js?1.3" defer></script>
+    <script src="../app/app_menu.js?1.6" defer></script>
     <script type="text/javascript" src="../app/jquery.min.js"></script>
 </head>
 <body>
@@ -60,13 +60,14 @@
                 $fecha_caduca=date("Y-m-d",strtotime($fecha."+ 1 week"));
                 $fecha_hoy=date("Y-m-d");
 
-                if($fecha_hoy==$fecha_caduca){
+                if($fecha_hoy==$fecha_caduca || $fecha_hoy>$fecha_caduca){
                     $sentencia="delete from menu where id_user=?";
                     $consulta=$conexion->prepare($sentencia); 
                     $consulta->bind_param("i",$id_user);
                     $consulta->execute();
                     $consulta->fetch();
                     $consulta->close();
+                    echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:./mi_menu.php">';
                 }
 
 
@@ -95,7 +96,7 @@
                             <div class="tarjeta_receta">
                                 <h2>'.$dias_semana[$i].'</h2>
                                 <h6>'.$categoria.'</h6>
-                                <img src="'.$imagen.'" class="card-img-top" alt="...">
+                                <img src="../'.$imagen.'" class="card-img-top" alt="...">
                                 <div class="cuerpo_t">
                                     <h5>'.$nombre.'</h5>
                                 </div>
@@ -115,18 +116,11 @@
                 /* PASADA LA SEMANA BORRAR EL MENU */
 
             }else{
-                    /* EN PRINCIPIO HABRA 3 BOTONES PARA CREAR MENU
-                    1º MENÚ ALEATORIO
-                    2º MENÚ DE MIS RECETAS
-                    3º MENÚ DE ME GUSTA */
-
                     echo'
                     <main>
-                        <form>
+                        <form id="elegir_menu">
                             <legend>PLATOS PARA EL MENÚ</legend>
                             <input type="button" class="btn btn-dark" id="receta_alea" name="receta_alea" value="Platos aleatorios">
-                            <input type="button" class="btn btn-dark" id="receta_mias" name="receta_mias" value="Platos de Mi Perfil">
-                            <input type="button" class="btn btn-dark" id="recetas_like" name="recetas_like" value="Recetas que me gustan">
                         </form>
 
                         <div class="table-responsive">
@@ -148,10 +142,10 @@
                             </table>
                         </div>
 
-                        <form id="menu_form" method="post" action="#">
-
-                        <input type="submit" class="btn btn-warning" id="guardar" name="guardar" value="Empezar semana">
+                        <form id="guardar" method="post" action="#">
+                            <input type="submit" class="btn btn-warning" id="guardar_boton" name="guardar" value="Empezar semana">
                         </form>
+                        </main>
                         
                 ';
 
@@ -177,10 +171,27 @@
                     echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:./mi_menu.php">';
                 }
             }
+        }else{
+            echo"
+                <div id='error'>
+                <img src='../imagenes/otro/error.png'>
+                    <p>Este no es tu menú</p>   
+                </div>
+            ";
+            echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:../index.php">';
         }
         
 
+    }else{
+        echo"
+            <div id='error'>
+            <img src='../imagenes/otro/error.png'>
+                <p>No tiene acceso a esta zona</p>   
+            </div>
+        ";
+        echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:../index.php">';
     }
+    echo insert_footer();
     ?>
     <script>
         /* CREAR VAR USUARIO PARA PODER AÑADIRLO A BASE DE DATOS */

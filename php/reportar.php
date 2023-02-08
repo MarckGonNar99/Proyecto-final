@@ -63,7 +63,23 @@
                 $consulta->fetch();
                 $consulta->close();
             }
+        }else{
+            echo"
+                <div id='error'>
+                <img src='../imagenes/otro/error.png'>
+                    <p>Admin no reporta</p>   
+                </div>
+            ";
+            echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:../index.php">';
         }
+    }else{
+        echo"
+            <div id='error'>
+               <img src='../imagenes/otro/error.png'>
+                <p>No tiene acceso a esta zona</p>   
+            </div>
+            ";
+            echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:../index.php">';
     }
     ?>
 </body>

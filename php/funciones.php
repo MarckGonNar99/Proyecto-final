@@ -6,11 +6,11 @@
             $header='
             <nav class="navbar bg-light">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">
+                    <a id="logoEnlace" class="navbar-brand" href="#">
                     <img src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
                     <p id="logo">DunCocina</p>
                     </a>
-                    <a href="'.$r1.'/cerrar_sesion.php" class="btn btn-secondary" role="button">Cerrar Sesión</a>
+                    <a id="sesionBoton" href="'.$r1.'/cerrar_sesion.php" class="btn btn-danger" role="button">Cerrar Sesión</a>
                 </div>
             </nav>
             '; 
@@ -18,11 +18,11 @@
         $header='
             <nav class="navbar bg-light">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">
+                    <a id="logoEnlace" class="navbar-brand" href="#">
                     <img src="/docs/5.2/assets/brand/bootstrap-logo.svg" alt="" width="30" height="24" class="d-inline-block align-text-top">
                     <p id="logo">DunCocina</p>
                     </a>
-                    <a href="'.$r1.'/iniciar_sesion.php" class="btn btn-secondary" role="button">Iniciar Sesión</a>
+                    <a id="sesionBoton" href="'.$r1.'/iniciar_sesion.php" class="btn btn-success" role="button">Iniciar Sesión</a>
                 </div>
             </nav>';
         }
@@ -33,20 +33,20 @@
         if(isset($_SESSION["id"])){/* SESION */
             if($_SESSION["id"]===1){/* ADMIN */
                 $nav='
-                <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="'.$e1.'/index.php">Inicio</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="'.$e2.'/recetas.php">Recetas</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="'.$e2.'/ranking.php">Ranking</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="'.$e2.'/lista_reporte.php">Reportes</a>
-                    </li>
-                </ul>
+                    <ul class="nav">
+                        <li>
+                            <a class="nav-link" href="'.$e1.'/index.php">Inicio</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="'.$e2.'/recetas.php">Recetas</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="'.$e2.'/ranking.php">Ranking</a>
+                        </li>
+                        <li>
+                            <a class="nav-link" href="'.$e2.'/lista_reporte.php">Reportes</a>
+                        </li>
+                    </ul>
                 ';
             }else{/* USER */
                 $nav='
@@ -150,7 +150,7 @@
                 que deberás leer para entender mejor cuáles son las cookies que utilizamos.
                 <div class='buttons'>
                     <button class='boton_acepto'>Acepto las galletas</button>
-                    <a class='item' href='#' target='_blank'>Leer más</a>
+                    <a class='item' href='php/cookies.php' target='_blank'>Leer más</a>
                 </div> 
             </div> 
         </div>

@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <title>Mi perfil</title>
-    <link  rel="stylesheet" type="text/css" href="../estilos/estilos.css?2.0"/>
+    <link  rel="stylesheet" type="text/css" href="../estilos/estilos.css?3.5"/>
     <script src="../app/app.js?1.1" defer></script>
 </head>
 <body>
@@ -46,6 +46,7 @@
                         <div>
                         <h2>'.$nombre.'</h2>
                         </div>
+                        <a href="'.$e2.'/editar_datos_user.php" class="btn btn-warning" role="button">Modificar datos</a>
                     </header>
                 ';
 
@@ -90,10 +91,22 @@
             echo'</div></main>';
             echo insert_footer();
         }else{
-            /* ADMIN NO TIENE PERFIL PARA SUBIR RECETAS*/
+            echo"
+                <div id='error'>
+                <img src='../imagenes/otro/error.png'>
+                    <p>Admin tu noo</p>   
+                </div>
+            ";
+            echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:../index.php">';
         }
     }else{
-        /* NO PUEDES ENTRAR SI NO TIENES SESION */
+        echo"
+            <div id='error'>
+            <img src='../imagenes/otro/error.png'>
+                <p>No tiene acceso a esta zona</p>   
+            </div>
+        ";
+        echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:../index.php">';
     }
 ?>
     <script>

@@ -50,10 +50,13 @@
                             <input type="file" name="imagen" id="imagen"><br>
                         </div>
                         <button type="submit" name="modificar" class="btn btn-primary">Modificar Perfil</button>
-                        <button type="reset" name="cancelar" class="btn btn-warning">Cancelar</button>
+                        <button type="submit" name="cancelar" class="btn btn-danger">Cancelar</button>
                     </form>
                 ';
-
+                echo'
+                    <p>Cambiar Contraseña<br>
+                        <a href="cambio_contraseña.php">Pulse aquí</a>
+                    </p>';
                 if(isset($_POST["modificar"])){
                     $nombre_nuevo=$_POST['nombre'];
 
@@ -118,7 +121,6 @@
                         $consulta->fetch();
                         $consulta->close();
                         $_SESSION['nombre']=$nombre_nuevo;
-                        echo "CAMBIASTE AMBOS DATOS";
                         echo'<META HTTP-EQUIV="REFRESH"CONTENT="1;URL=http:./mi_perfil.php">';
                     }elseif($imagen==1 && $nombre_vacio==1){
                         $sentencia="update usuario set foto=? where id_user=?";
@@ -127,7 +129,6 @@
                         $consulta->execute();
                         $consulta->fetch();
                         $consulta->close();
-                        echo "CAMBIASTE LA FOTO DE PERFIL";
                         echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:./mi_perfil.php">';
                     }elseif($existe>0 && $nombre_vacio==0){
                         $sentencia="update usuario set nombre=? where id_user=?";
@@ -137,19 +138,33 @@
                         $consulta->fetch();
                         $consulta->close();
                         $_SESSION['nombre']=$nombre_nuevo;
-                       echo "CAMBIASTE EL NOMBRE";
                        echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:./mi_perfil.php">';
                     }else{
-                        echo "ERROR NO HAY NINGUN DATO INTRODUCIDO";
                         echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:./mi_perfil.php">';
                     }
                 } 
-
+                if(isset($_POST["cancelar"])){
+                    echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:./mi_perfil.php?">';
+                }
                 
 
             }else{
-                /* NI ADMIN |-º-| NI NO REGISTRADOS */
+                echo"
+                    <div id='error'>
+                        <img src='../imagenes/otro/error.png'>
+                        <p>Admin tu no</p>   
+                    </div>
+                ";
+                echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:../index.php">';
             }
+        }else{
+            echo"
+                <div id='error'>
+                <img src='../imagenes/otro/error.png'>
+                    <p>No tiene acceso a esta zona</p>   
+                </div>
+            ";
+            echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:../index.php">';
         }
 ?>
 </body>
