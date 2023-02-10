@@ -273,7 +273,7 @@ main{
 /* PAGINA DE RECETAS */
 .buscar{
     display: flex;
-    margin-top:3%
+    margin-top:3%;
 }
 .buscar form{
     display: flex;

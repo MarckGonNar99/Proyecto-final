@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <link rel="icon" type="image/x-icon" href="../imagenes/otro/logo_sitio.png">
     <title>Cambio de Contraseña</title>
     <link rel="stylesheet" type="text/css" href="../estilos/estilos.css?3.0">
     <script text="text/JavaScript" src="../app/app.js?2.5" defer></script>
@@ -25,7 +26,9 @@
         $r1=".";
         $e1="..";
         $e2=".";
-        echo insert_cab($r1);
+        $id_user=$_SESSION["id"];
+        $i="../";
+        echo insert_cab($r1,$i);
         echo insert_nav($e1,$e2);
         /* FORMULARIO DE SESION */
         echo '
@@ -51,9 +54,9 @@
             $pass=$_POST['pass'];
             $pass=md5($pass);
 
-            $sentencia="update usuario set contraseña=?";
+            $sentencia="update usuario set contraseña=? where id_user=?";
             $consulta=$conexion->prepare($sentencia);
-            $consulta->bind_param("s",$pass);
+            $consulta->bind_param("si",$pass,$id_user);
             $consulta->execute();
             $consulta->fetch();
             $consulta->close();

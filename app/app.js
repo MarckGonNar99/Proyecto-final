@@ -53,7 +53,8 @@ if(pagina=="mi_perfil"){
     }
   )
 
-}else if(pagina=="crear_receta"){
+}else if(pagina=="crear_receta" || pagina=="editar_receta"){  
+  
   const si_alergia = document.querySelector("#si");
   const no_alergia = document.querySelector("#no");
   const alergeno_input = document.querySelector("#alergeno");
