@@ -102,10 +102,15 @@
                         <input type="file" name="imagen" id="imagen"><br>
                     </div>
                     <button type="submit" name="modificar" class="btn btn-primary">Modificar</button>
-                    <a href="'.$e2.'/mi_perfil.php" class="btn btn-danger" role="button">Volver</a>
-                </form>
-            </main>
+
             ';
+            if($_SESSION['id']=='01'){
+                echo'<a href="'.$e2.'/recetas.php" class="btn btn-danger" role="button">Volver</a>';
+            }else{
+                echo'<a href="'.$e2.'/mi_perfil.php" class="btn btn-danger" role="button">Volver</a>';
+            }
+            
+            echo'</form></main>';
 
             if(isset($_POST["modificar"])){
                 $n_nombre=$_POST["nombre_receta"];
@@ -121,7 +126,6 @@
                 $fecha_edicion=date("Y-m-d");
 
                 /* DATOS DE LA IMAGEN */
-
                 $imagen=0;
                 $n=$_FILES['imagen']['name'];
                 $tipo_foto=$_FILES['imagen']['type'];
@@ -130,8 +134,8 @@
                 $existe =$_FILES['imagen']['error'];
 
 
-                if(!file_exists($ruta)){
-                mkdir($ruta);
+                if(!file_exists("../".$ruta)){
+                    mkdir($ruta);
                 }
 
                 $var=$ruta;
@@ -154,16 +158,13 @@
 
                     if(strrpos($tipo_foto, "jpeg")!==false || strrpos($tipo_foto, "png")!==false
                     || strrpos($tipo_foto, "jpg")!==false){
-                        
-                        
+
                         if(strrpos($tipo_foto, "jpeg")!==false || strrpos($tipo_foto, "jpg")!==false){
-                            $extension="jpeg";
                             $var=$var."/".$nombre_imagen."_".$id_user.".jpg";
                         }else{
-                            $extension="png";
                             $var=$var."/".$nombre_imagen."_".$id_user.".png";
                         }
-                        move_uploaded_file($_FILES['imagen']['tmp_name'],$var);
+                        move_uploaded_file($temp,"../".$var);
                         $imagen=1;
                     }else{
                         $imagen=0;
@@ -199,7 +200,12 @@
                     $consulta->execute();
                     $consulta->fetch();
                     $consulta->close();
-                    echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:./mi_perfil.php?'.$id_user.'">';
+                    if($_SESSION['id']=='01'){
+                        echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:./recetas.php">';
+                    }else{
+                        echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:./mi_perfil.php?'.$id_user.'">';
+                    }
+                    
                    }
             }
             if(isset($_POST["volver"])){
