@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
     <link rel="icon" type="image/x-icon" href="../imagenes/otro/logo_sitio.png">
     <title>Crear Receta</title>
-    <link href="../estilos/estilos.css" rel="stylesheet">
+    <link href="../estilos/estilos.css?3.0" rel="stylesheet">
     <script type="text/Javascript" src="../app/app.js?1.1" defer></script>
 </head>
 <body>
@@ -43,7 +43,7 @@
                 $fila=$consulta->fetch_array(MYSQLI_ASSOC);
 
                 echo'
-                    <main class="formulario" id="crear_receta_form">
+                    <main class="formulario" id="crear_receta_form" >
                         <form method="POST" action="#" enctype="multipart/form-data">
                         <input type="hidden" value='.$fila["AUTO_INCREMENT"].' name="id" class="form-control" id="id" readonly>
                             <div class="mb-3">
@@ -97,6 +97,7 @@
                         </form>
                 </main>
             ';
+
                 //PROCESAMIENTO DE DATOS
                 if(isset($_POST['crear'])){
                     $id=$_POST["id"];
@@ -124,7 +125,7 @@
                     $existe =$_FILES['imagen']['error'];
 
 
-                    if(!file_exists($ruta)){
+                    if(!file_exists("../".$ruta)){
                         mkdir($ruta);
                     }
 
@@ -149,13 +150,12 @@
                                 $var=$var."/".$nombre_imagen."_".$id.".png";
                             }
 
-                            move_uploaded_file($_FILES['imagen']['tmp_name'],$var);
+                            move_uploaded_file($temp,"../".$var);
                             $imagen=1;
                         }else{
                             $imagen=0;      
                         }
                     }
-                    echo $imagen;
 
                             //INSERTAR DATOS EN SQL
                     if($imagen==1){
