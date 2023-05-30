@@ -25,19 +25,29 @@ body{
     align-items: center;
     flex-direction: column;
 }
+#logo{
+    font-size: xx-large;
+    font-family: cursive;
+    font-variant: small-caps;
+}
+#header{
+    padding: 0%;
+    background-color: #f9c284;
+}
+
 /* NAVEGADOR */
 .nav{
-    background: aliceblue;
-    font-size: larger;
+    background: #fbdfb9;
+    font-size: x-large;
     font-family: monospace;
     display: flex;
     justify-content: center;
 }
 .nav li{
-    border-right: #99daf8 solid;
+    border-right: #fbbf1a solid;
 }
 .nav li:hover{
-    background: #99daf8 ;
+    background: #fbbf1a ;
 
 }
 .nav a:hover{
@@ -94,6 +104,11 @@ main{
     color:red;
     font-family: 'Courier New', Courier, monospace;
 }
+
+#registro h6{
+    color:red;
+    font-family: 'Courier New', Courier, monospace;
+}
     /* REPORTE */
 #reporte{
     padding:2%;
@@ -109,6 +124,21 @@ main{
     height: 167px;
 }
 
+/* CREAR - EDITAR RECETA */
+#crear_receta_form{
+    display: flex;
+    flex-direction: column;
+    padding: 4%;
+    border: aliceblue dotted 1px;
+    margin-top: 3%;
+    width: 60%;
+    margin-bottom: 4%;
+}
+
+#crear_receta_form textarea{
+    height: 260px;
+}
+
 #editar_receta{
     display: flex;
     flex-direction: column;
@@ -116,6 +146,7 @@ main{
     border: #32ff57 dotted 1px;
     margin-top: 3%;
     width: 60%;
+    margin-bottom: 4%;
 }
 #editar_receta textarea{
     height: 260px;
@@ -142,6 +173,9 @@ main{
     flex-wrap: wrap;
 }
 
+#index_final_con{
+    margin-bottom: -10%;
+}
 
 
 #crear_receta{
@@ -183,7 +217,24 @@ main{
     transition-duration: 1s;
 }
 
+#recetas_like{
+    background-color: #ffffff5e;
+    display: flex;
+    flex-direction: column;
+    margin-top: 5%;
+    border-top: 1px solid;
+    padding-top: 2%;
+    margin-bottom: -5%;
+}
 
+#recetas_like #titulo_like{
+    display: flex;
+    justify-content: center;
+    font-size: xx-large;
+    font-family: cursive;
+    background: #f0f8ffb8;
+    color: red;
+}
 
 /*CAMBIOS SEGUN EL TIPO DE COMIDA */
 
@@ -273,9 +324,11 @@ main{
 /* PAGINA DE RECETAS */
 .buscar{
     display: flex;
-    margin-top:3%;
+    background-color: #c1e3ed57;
+
 }
 .buscar form{
+    margin-top:3%;
     display: flex;
     align-items: baseline;
     flex-direction: row;
@@ -293,6 +346,9 @@ main{
     color: aliceblue;
     font-size: large;
 }
+.buscar #buscar_receta{
+    margin:5%
+}
 
 .pagination{
     display: flex;
@@ -305,17 +361,48 @@ main{
     align-items: center;
     flex-direction: column;
     margin: 5% 15%;
-    background-image: url("../imagenes/fondos/fondo_receta.webp");
+    background-color:rgb(214, 208, 208);
     font-size: xx-large;
     padding-top: 1%;
     font-family: monospace;
     padding: 1.5%;
-    border-radius: 5%;
 }
 
+#nombre_receta{
+    margin-bottom:4%;
+    border-bottom: 1px dotted #0000003b;
+    font-family: inherit;
+}
 
 #imagen_receta{
-    width:400px;
+    width:600px;
+    margin-bottom: 3%;
+}
+
+#otros_datos{
+    border-top: 1px dotted #0000003b;
+    padding-top: 3%;
+    margin-bottom: 5%;
+}
+
+#lista_ingre{
+    flex-direction: column;
+}
+#lista_ingre p{
+    display: flex;
+    justify-content: center;
+}
+
+#lista_pasos{
+    flex-direction: column;
+}
+#lista_pasos p{
+    display: flex;
+    justify-content: center;
+}
+
+#lista_pasos li{
+    margin-bottom: 20px;
 }
 .emoji{
     width: 30px;
@@ -334,6 +421,9 @@ main{
     margin: 3%;
     padding: 40px;
     transition-duration: 1s;
+    column-count: 2;
+    list-style: square;
+    column-gap: 15%;
 }
 .ingrediente{
     transform: translateY(-15px);
@@ -358,6 +448,16 @@ main{
 }
 
 /* MENU DE OPCIONES */
+#elegir_menu{
+    width: 100%;
+    padding-left: 30%;
+    background: rgba(240, 248, 255, 0.639);
+    padding-bottom: 1%;
+}
+#guardar{
+    padding-left: 30%;
+}
+
 .opciones{
     margin-bottom: 4%;
 }
@@ -412,6 +512,7 @@ main{
     color: #fff;
     display: flex;
     justify-content: space-around;
+    margin-top: -15%;
 }
 
 #pie_pagina{
@@ -516,7 +617,7 @@ main{
 /* MEDIA CAJA CON RECETAS */
 @media screen and (max-width: 700px){
     main{
-        margin-bottom: 50%;
+        margin-bottom: 100%;
     }
     #texto{
         margin-bottom: 50%;
@@ -533,6 +634,8 @@ main{
     #ver_receta a{
         font-size: larger;
     }
+}
+@media screen and (max-width: 880px){
     #imagen_receta{
         width: 300px;
     }
@@ -567,11 +670,17 @@ main{
     #crear_receta_form #imagen{
         width: -webkit-fill-available;
     }
+    #crear_receta_form select{
+        width: 100%;
+    }
     #editar_receta{
         width: 90%;
     }
     #editar_receta #imagen{
         width: -webkit-fill-available;
+    }
+    #editar_receta select{
+        width: 100%;
     }
 
 }

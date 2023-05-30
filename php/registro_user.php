@@ -9,10 +9,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-    <link rel="icon" type="image/x-icon" href="../imagenes/otro/logo_sitio.png">
+    <link rel="icon" type="image/x-icon" href="../imagenes/otro/logo.png">
     <title>Registro</title>
-    <link rel="stylesheet" type="text/css" href="../estilos/estilos.css">
-    <script text="text/JavaScript" src="../app/app.js" defer></script>
+    <link rel="stylesheet" type="text/css" href="../estilos/estilos.css?6.5">
+    <script text="text/JavaScript" src="../app/app.js?6.0" defer></script>
 </head>
 <body>
 <?php
@@ -37,6 +37,7 @@
         $i="../";
         echo insert_cab($r1,$i);
         echo insert_nav($e1,$e2);
+        $error=0;
         /* FORMULARIO DE SESION */
         echo '
             <main class="formulario" id="registro">
@@ -47,7 +48,7 @@
                     </div>
                     <div class="mb-3">
                     <label for="contraseña"  class="form-label">Contraseña</label>
-                    <input type="password" name="pass" class="form-control" id="contraseña">
+                    <input type="password" name="pass" class="form-control" id="pass">
                     </div>
                     <button type="submit" name="registro" class="btn btn-primary">Crear</button>
                     <a href="'.$e2.'/iniciar_sesion.php" class="btn btn-danger" role="button">Volver</a>
@@ -74,11 +75,15 @@
                 echo"<h3 class='mensaje'>USUARIO REGISTRADO</h3>";
                 echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:iniciar_sesion.php">';
             }else{
-                echo"<h3 class='mensaje'>ERROR, Ese Usuario ya existe</h3>";
-                /* ERROR EN EL REGISTRO */
+                $error=1;
             }
         }
     }
     ?>
+    <script>
+        /* MANEJO DE PAGINAS JS */
+        var pagina="<?php echo"registro";?>";
+        var error="<?php echo $error;?>";
+    </script>
 </body>
 </html>

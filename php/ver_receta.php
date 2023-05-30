@@ -9,12 +9,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-    <link rel="icon" type="image/x-icon" href="../imagenes/otro/logo_sitio.png">
+    <link rel="icon" type="image/x-icon" href="../imagenes/otro/logo.png">
     <title>Recetas</title>
-    <link  rel="stylesheet" type="text/css" href="../estilos/estilos.css?2.7"/>
+    <link  rel="stylesheet" type="text/css" href="../estilos/estilos.css?4.5"/>
     <script src="../app/app.js?2.5" defer></script>
 </head>
-<body>
+<body id='pagina_texto'>
     <?php
 
     require('./funciones.php');
@@ -59,11 +59,11 @@
             echo'
                 <main>
                     <div id="ver_receta">
-                        <div>
+                        <div id="nombre_receta">
                             <h2>'.$nombre.'</h2>
                         </div>
                         <img id="imagen_receta" src="../'.$imagen.'">
-                        <div>
+                        <div id="otros_datos">
                             <p>'.$tiempo.' minutos</p>
                             <p>'.$categoria.'</p>
                         </div>
@@ -74,21 +74,23 @@
                         </div>';
                 }
                 echo'
-                        
-                <ul class="ingre">
-                <p>Ingredientes<img class="emoji" src="../imagenes/recetas/emoji_ingr.png""></p> 
+                 <div id="lista_ingre">   
+                    <p>Ingredientes<img class="emoji" src="../imagenes/recetas/emoji_ingr.png""></p>     
+                    <ul class="ingre">
                 ';
             foreach($listaIngr as $valor){
                 echo"<li>".$valor."</li>";
             }
-            echo"</ul>";
-            echo"<ol class='ps'>
-                <p>Pasos<img class='emoji' src='../imagenes/recetas/emoji_paso.png''></p>";
+            echo"</ul></div>";
+            echo"
+                <div id='lista_pasos'>
+                    <p>Pasos<img class='emoji' src='../imagenes/recetas/emoji_paso.png''></p>
+                    <ol class='ps'>";
             
             foreach($listaPasos as $valor){
                 echo"<li>".$valor.".</li>";
             }
-            echo"</ol>";
+            echo"</ol></div>";
 
 
 
@@ -100,19 +102,21 @@
 
                 echo"
                     <form method='post' action='#'>
-                        <input type='hidden' name='id_eliminar' value=".$id_receta.">
                         <button type='submit' name='borrar' class='btn btn-danger'>Borrar</button>
                     </form>
                     </div>
                 ";
                 if(isset($_POST["borrar"])){
-                    $sentencia="delete from receta where id_receta=? ";
+                    $sentencia="delete from receta where id_receta=".$id_receta."";
                     $consulta=$conexion->prepare($sentencia); 
-                    $consulta->bind_param("i",$id_receta);
-                    echo"<h2 class='mensaje'>Receta borrada</h2>";
                     $consulta->execute();
                     $consulta->fetch();
                     $consulta->close();
+                    if($_SESSION['id']=='01'){
+                        echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:./recetas.php">';
+                    }else{
+                        echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:./mi_perfil.php?'.$id_user.'">';
+                    }
                 }
             }else{
 

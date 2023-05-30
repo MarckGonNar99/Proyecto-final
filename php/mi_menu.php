@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-    <link rel="icon" type="image/x-icon" href="../imagenes/otro/logo_sitio.png">
+    <link rel="icon" type="image/x-icon" href="../imagenes/otro/logo.png">
     <title>Menú Semanal</title>
     <link  rel="stylesheet" type="text/css" href="../estilos/estilos.css?1.5"/>
     <script src="../app/app_menu.js?1.6" defer></script>
@@ -94,6 +94,8 @@
                     
                     /* PREPARAMOS LA VISTA DEL MENU */
                     while($consulta->fetch()){
+                        $timestamp = strtotime($fecha_subida);
+                        $fecha_bien = date('d/m/Y', $timestamp);
                             echo'
                             <div class="tarjeta_receta">
                                 <h2>'.$dias_semana[$i].'</h2>
@@ -103,7 +105,7 @@
                                     <h5>'.$nombre.'</h5>
                                 </div>
                                 <div class="data_t">
-                                        <p>'.$fecha_subida.'</p>
+                                        <p>'.$fecha_bien.'</p>
                                 </div>
                                 <a href='.$e2.'/ver_receta.php?id_receta='.$id_receta.'>Ver más</a>
                             </div>
@@ -118,6 +120,10 @@
                 /* PASADA LA SEMANA BORRAR EL MENU */
 
             }else{
+                /* CREAR ID ÚNICO DEL MENU */
+                $select_id = "SELECT `AUTO_INCREMENT` FROM  INFORMATION_SCHEMA.TABLES WHERE TABLE_SCHEMA = 'web_cocina' AND   TABLE_NAME = 'menu';";
+                $consulta=$conexion->query($select_id);
+                $fila=$consulta->fetch_array(MYSQLI_ASSOC);
                     echo'
                     <main>
                         <form id="elegir_menu">
@@ -145,6 +151,7 @@
                         </div>
 
                         <form id="guardar" method="post" action="#">
+                        <input type="hidden" value='.$fila["AUTO_INCREMENT"].' name="id_menu" class="form-control" id="id" readonly>
                             <input type="submit" class="btn btn-warning" id="guardar_boton" name="guardar" value="Empezar semana">
                         </form>
                         </main>
@@ -152,6 +159,7 @@
                 ';
 
                 if(isset($_POST["guardar"])){
+                    $id_menu=$_POST["id_menu"];
                     $user=$_POST["user"];
                     $lunes=$_POST["lunes"];
                     $martes=$_POST["martes"];
@@ -162,9 +170,9 @@
                     $domingo=$_POST["domingo"];
                     $fecha=date("Y-m-d");
 
-                    $sentencia="insert into menu values(?,?,?,?,?,?,?,?,?)";
+                    $sentencia="insert into menu values(?,?,?,?,?,?,?,?,?,?)";
                     $consulta=$conexion->prepare($sentencia);
-                    $consulta->bind_param("iiiiiiiis",$user, $lunes, $martes, $miercoles
+                    $consulta->bind_param("iiiiiiiiis",$id_menu,$user, $lunes, $martes, $miercoles
                     , $jueves, $viernes, $sabado, $domingo, $fecha);
                     $consulta->execute();
                     $consulta->fetch();

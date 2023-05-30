@@ -10,9 +10,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-    <link rel="icon" type="image/x-icon" href="./imagenes/otro/logo_sitio.png">
+    <link rel="icon" type="image/x-icon" href="./imagenes/otro/logo.png">
     <title>Inicio</title>
-    <link rel="stylesheet" type="text/css" href="estilos/estilos.css?3.0" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="estilos/estilos.css?4.5" rel="stylesheet">
     <script text="text/JavaScript" src="app/app.js?1.9"defer></script>
     
     <!-- CONEXION CON LA APP -->
@@ -55,6 +55,8 @@
             ';
         
     while($consulta->fetch()){
+        $timestamp = strtotime($fecha);
+        $fecha_bien = date('d/m/Y', $timestamp);
         echo'
         
             <div class="tarjeta_receta">
@@ -64,7 +66,7 @@
                     <h5>'.$nombre_receta.'</h5>
                 </div>
                 <div class="data_t">
-                        <p>'.$fecha.'</p>
+                        <p>'.$fecha_bien.'</p>
                         <small>'.$puntuacion.' ptos</small></p>
                 </div>
                 <a href=php/ver_receta.php?id_receta='.$id_receta.'>Ver más</a>
@@ -89,7 +91,7 @@
                 también sirven para hacer un menu. Todo esto es solo una pequeña
                 ayuda para que se suba más contenido y nuestro equipo de administradores
                 siempre está atento a los reportes y avisos de los usuarios para tomar
-                cartas en caso de que halla algo que no sea correcto</p>
+                cartas en caso de que halla algo que no sea correcto.</p>
         </div>
        ';
 
@@ -105,12 +107,14 @@
         $consulta->execute();
         $consulta->store_result();
 
-        echo '<div class="recetas_index">
+        echo '<div class="recetas_index" id="index_final_con">
         <h3>Recetas Top</h3>
             <div class="contenedor">
             ';
         
     while($consulta->fetch()){
+        $timestamp = strtotime($fecha);
+        $fecha_bien = date('d/m/Y', $timestamp);
         echo'
         
             <div class="tarjeta_receta">
@@ -120,7 +124,7 @@
                     <h5>'.$nombre_receta.'</h5>
                 </div>
                 <div class="data_t">
-                        <p>'.$fecha.'</p>
+                        <p>'.$fecha_bien.'</p>
                         <small>'.$puntuacion.' ptos</small></p>
                 </div>
                 <a href=php/ver_receta.php?id_receta='.$id_receta.'>Ver más</a>

@@ -4,24 +4,24 @@
     function insert_cab($r1,$i){
          if(isset($_SESSION["id"])){
             $header='
-            <nav class="navbar bg-light">
+            <nav class="navbar" id="header">
                 <div class="container-fluid">
                     <a id="logoEnlace" class="navbar-brand" href="#">
-                    <img src="'.$i.'/imagenes/otro/logo_sitio.png" alt="" width="100" height="60" class="d-inline-block align-text-top">
-                    <p id="logo">DunCocina</p>
+                    <img src="'.$i.'/imagenes/otro/logo.png" alt="" width="100%" height="150" class="d-inline-block align-text-top">
                     </a>
+                    <p id="logo">Cualquiera puede cocinar</p>
                     <a id="sesionBoton" href="'.$r1.'/cerrar_sesion.php" class="btn btn-danger" role="button">Cerrar Sesión</a>
                 </div>
             </nav>
             '; 
         }else{
         $header='
-            <nav class="navbar bg-light">
+            <nav class="navbar" id="header">
                 <div class="container-fluid">
                     <a id="logoEnlace" class="navbar-brand" href="#">
-                    <img src="'.$i.'imagenes/otro/logo_sitio.png" alt="" width="100" height="60" class="d-inline-block align-text-top">
-                    <p id="logo"><h3>DunCocina</h3></p>
+                    <img src="'.$i.'imagenes/otro/logo.png" alt="" width="100%" height="150" class="d-inline-block align-text-top">
                     </a>
+                    <p id="logo">Cualquiera puede cocinar</p>
                     <a id="sesionBoton" href="'.$r1.'/iniciar_sesion.php" class="btn btn-success" role="button">Iniciar Sesión</a>
                 </div>
             </nav>';

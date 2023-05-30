@@ -145,7 +145,7 @@ if(pagina=="mi_perfil"){
       }
     },2000
   );
-}else if(pagina=="iniciar_sesion"){
+}else if(pagina=="iniciar_sesion" || pagina=="registro"){
   /* MENSAJE DE ERROR */
   if(error==1){
     const pass=document.querySelector("#pass");
@@ -207,7 +207,3 @@ if(pagina=="mi_perfil"){
     }
   })
 }
-
-
-
-

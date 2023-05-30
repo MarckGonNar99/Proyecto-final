@@ -9,9 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
-    <link rel="icon" type="image/x-icon" href="../imagenes/otro/logo_sitio.png">
+    <link rel="icon" type="image/x-icon" href="../imagenes/otro/logo.png">
     <title>Recetas</title>
-    <link  rel="stylesheet" type="text/css" href="../estilos/estilos.css?3.5"/>
+    <link  rel="stylesheet" type="text/css" href="../estilos/estilos.css?4.5"/>
     <script src="../app/app.js?3.5" defer></script>
 </head>
 <body>
@@ -44,7 +44,7 @@
                             </select>
                         </div>
                         <div>
-                            <input type="text" name="dato" class="form-control me-2"  placeholder="Buscar" aria-label="Search" required>
+                            <input type="text" id="buscar_receta" name="dato" class="form-control me-2"  placeholder="Buscar" aria-label="Search" required>
                             <a href="'.$e2.'/recetas.php?" class="btn btn-warning" role="button">Volver</a>
                         </div>
                         <input type="submit" class="btn btn-dark" name="buscar" value="Buscar">
@@ -80,6 +80,8 @@
                 }
                 echo"<main><div class='contenedor'>";
                 while($consulta->fetch()){
+                    $timestamp = strtotime($fecha);
+                    $fecha_bien = date('d/m/Y', $timestamp);
                     echo"
                     <div class='tarjeta_receta'>
                         <h6>$categoria</h6>
@@ -88,7 +90,7 @@
                             <h5>$nombre_receta</h5>
                         </div>
                         <div class='data_t'>
-                                <p>$fecha</p>
+                                <p>$fecha_bien</p>
                                 <small>$puntuacion ptos</small></p>
                         </div>
                         <a href='$e2/ver_receta.php?id_receta=".$id_receta."'>Ver más</a>
@@ -129,6 +131,8 @@
 
                 if ($result->num_rows > 0) {
                     while ($row = $result->fetch_assoc()) {
+                        $timestamp = strtotime($row["fecha"]);
+                        $fecha_bien = date('d/m/Y', $timestamp);
                         echo'
                     
                         <div class="tarjeta_receta">
@@ -138,7 +142,7 @@
                                 <h5>'.$row["nombre"].'</h5>
                             </div>
                             <div class="data_t">
-                                    <p>'.$row["fecha"].'</p>
+                                    <p>'.$fecha_bien.'</p>
                                     <small>'.$row["puntuacion"].' ptos</small></p>
                             </div>
                             <a href='.$e2.'/ver_receta.php?id_receta='.$row["id_receta"].'>Ver más</a>
