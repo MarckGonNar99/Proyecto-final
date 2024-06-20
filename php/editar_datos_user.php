@@ -120,7 +120,6 @@
                         $consulta=$conexion->prepare($sentencia);
                         $consulta->bind_param("ssi",$nombre_nuevo,$var,$id_user);
                         $consulta->execute();
-                        $consulta->fetch();
                         $consulta->close();
                         $_SESSION['nombre']=$nombre_nuevo;
                         echo'<META HTTP-EQUIV="REFRESH"CONTENT="1;URL=http:./mi_perfil.php">';
@@ -129,7 +128,6 @@
                         $consulta=$conexion->prepare($sentencia);
                         $consulta->bind_param("si",$var,$id_user);
                         $consulta->execute();
-                        $consulta->fetch();
                         $consulta->close();
                         echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:./mi_perfil.php">';
                     }elseif($existe>0 && $nombre_vacio==0){
@@ -137,7 +135,6 @@
                         $consulta=$conexion->prepare($sentencia);
                         $consulta->bind_param("si",$nombre_nuevo,$id_user);
                         $consulta->execute();
-                        $consulta->fetch();
                         $consulta->close();
                         $_SESSION['nombre']=$nombre_nuevo;
                        echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:./mi_perfil.php">';

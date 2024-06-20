@@ -87,7 +87,6 @@
                 $consulta=$conexion->prepare($sentencia); 
                 $consulta->bind_param("i",$id_borrar);
                 $consulta->execute();
-                $consulta->fetch();
                 $consulta->close();
                 echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:./lista_reporte.php">';
             }

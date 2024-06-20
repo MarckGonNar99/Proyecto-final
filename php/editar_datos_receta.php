@@ -177,10 +177,10 @@
                    LO DEMAS TIENE REQUIRE*/
 
                    if($imagen==1){
-                    $sentencia="update receta set nombre=?, imagen=? ,
+                    $sentencia2="update receta set nombre=?, imagen=? ,
                         tiempo=?,categoria=?, ingredientes=?, 
                         alergenos=?, pasos=?, fecha=? where id_receta=? && id_user=?";
-                    $consulta=$conexion->prepare($sentencia);
+                    $consulta=$conexion->prepare($sentencia2);
                     $consulta->bind_param("ssisssssii", $n_nombre, $var, $n_tiempo,
                         $n_categoria, $n_ingredientes,
                         $n_alergeno, $n_pasos, $fecha_edicion, $id_receta, $id_user);
@@ -190,15 +190,14 @@
                     echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:./mi_perfil.php?'.$id_user.'">';
 
                    }elseif($imagen==0){
-                    $sentencia="update receta set nombre=?,
+                    $sentencia2="update receta set nombre=?,
                     tiempo=?, categoria=?, ingredientes=?, 
                     alergenos=?, pasos=?, fecha=? where id_receta=? && id_user=?";
-                    $consulta=$conexion->prepare($sentencia);
+                    $consulta=$conexion->prepare($sentencia2);
                     $consulta->bind_param("sisssssii", $n_nombre, $n_tiempo,
                     $n_categoria, $n_ingredientes,
                     $n_alergeno, $n_pasos, $fecha_edicion, $id_receta, $id_user);
                     $consulta->execute();
-                    $consulta->fetch();
                     $consulta->close();
                     if($_SESSION['id']=='01'){
                         echo'<META HTTP-EQUIV="REFRESH"CONTENT="2;URL=http:./recetas.php">';
